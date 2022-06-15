@@ -1,3 +1,3 @@
-import {createConnection, dataSourceHeroku} from "./data-source"
+import {createConnection, dataSourceDocker, dataSourceHeroku, dataSourceTaller} from "./data-source"
 
 createConnection(dataSourceHeroku)
