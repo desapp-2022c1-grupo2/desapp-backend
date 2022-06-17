@@ -3,9 +3,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentModule } from './student/student.module';
 import { AssignmentModule } from './assignment/assignment.module';
+import {ConfigModule} from "@nestjs/config";
 
 @Module({
-  imports: [StudentModule, AssignmentModule],
+  imports: [
+      ConfigModule.forRoot(),
+      StudentModule,
+      AssignmentModule
+  ] ,
   controllers: [AppController],
   providers: [AppService],
 })
