@@ -5,13 +5,12 @@ const dotenv = require('dotenv').config();
 
 const dataSourceOptionsTaller: MysqlConnectionOptions = {
   type: 'mysql',
-  url:'http://dbadm.www.com.ar/',
-  database: 'wca62414_db3',
-  host: '192.168.186.175',
-  username: 'wca62414_user',
-  password: 'pde2021fadu',
-  port: 3306,
-  logging:true
+  database: process.env.DB_HOST,
+  host: process.env.DB_PORT,
+  username: process.env.DB_NAME,
+  password: process.env.DB_USERNAME,
+  logging: true,
+  debug: true,
 }
 
 const dataSourceDockerMySQL: MysqlConnectionOptions = {
@@ -30,26 +29,11 @@ const dataSourceDockerMySQL: MysqlConnectionOptions = {
 
 const dataSourceOptionsHeroku: MysqlConnectionOptions = {
   type: 'mysql',
-  url: 'mysql://ew063rqmubjow6q4:efhn2smlvy5ziug3@cxmgkzhk95kfgbq4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kd7tvzyzw7trd0zc',
-  database:'kd7tvzyzw7trd0zc',
-  host: 'cxmgkzhk95kfgbq4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  username: 'ew063rqmubjow6q4',
-  password: 'efhn2smlvy5ziug3',
+  url: process.env.HEROKU_DB_URL,
   logging: true,
   synchronize:true
 }
 
 export const dataSourceHeroku = new DataSource(dataSourceOptionsHeroku);
-export const dataSourceTaller = new DataSource(dataSourceDockerMySQL);
+export const dataSourceTaller = new DataSource(dataSourceOptionsTaller);
 export const dataSourceDocker = new DataSource(dataSourceDockerMySQL);
-
-
-export const createConnection = async (connectionDataSource: DataSource) => {
-  await connectionDataSource.initialize()
-    .then(() => {
-      console.log("Data source initialized. Database used => ", connectionDataSource.options.database)
-    })
-    .catch((err) => {
-      console.error("Cannot initialize data source => ", err)
-    })
-};

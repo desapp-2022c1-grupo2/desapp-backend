@@ -1,3 +1,5 @@
-import {createConnection, dataSourceDocker, dataSourceHeroku, dataSourceTaller} from "./data-source"
+import {validateConnection} from "./connection";
+import {dataSourceTaller} from "./data-source";
 
-createConnection(dataSourceHeroku)
+
+validateConnection(dataSourceTaller);
