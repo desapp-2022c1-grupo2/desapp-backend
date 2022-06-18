@@ -5,8 +5,8 @@ import { StudentModule } from './student/student.module';
 import { AssignmentModule } from './assignment/assignment.module';
 import {ConfigModule} from "@nestjs/config";
 import { DatabaseModule } from './database/database.module';
+import { AdminModule } from './admin/admin.module';
 import * as Joi from '@hapi/joi';
-
 
 
 @Module({
@@ -24,7 +24,8 @@ import * as Joi from '@hapi/joi';
       }),
       StudentModule,
       AssignmentModule,
-      DatabaseModule
+      DatabaseModule,
+      AdminModule
   ] ,
   controllers: [AppController],
   providers: [AppService],
