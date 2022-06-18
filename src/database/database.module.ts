@@ -8,7 +8,7 @@ import {ConfigModule, ConfigService} from "@nestjs/config";
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => ({
-                type: 'mysql',
+                type: 'mariadb',
                 //url: configService.get(''),
                 host: configService.get('HEROKU_HOST'),
                 port: configService.get('HEROKU_PORT'),

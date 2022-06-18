@@ -8,6 +8,9 @@ export class StudentService {
     return 'This action adds a new student';
   }
 
+  oneStudent(){
+
+  }
   findAll() {
     return [
       {

@@ -2,6 +2,7 @@ import {Body, Controller, Get, HttpCode, HttpStatus, Post} from '@nestjs/common'
 
 import {AdminService} from "./admin.service";
 import {Admin} from "./admin.entity";
+import {CreatedAdminDto} from "./dto";
 
 @Controller('admin')
 export class AdminController {
@@ -18,8 +19,7 @@ export class AdminController {
     @Post()
     @HttpCode(HttpStatus.CREATED)
     createdAdmin(
-        @Body('msg') message: string
-    ): void {
-        return this.adminService.createAdmin(message)
+        @Body() dto: CreatedAdminDto ): void {
+        return this.adminService.createAdmin(dto)
     }
 }

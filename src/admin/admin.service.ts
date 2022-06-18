@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {Admin} from "./admin.entity";
+import {CreatedAdminDto} from "./dto";
 
 @Injectable()
 export class AdminService {
@@ -16,12 +17,12 @@ export class AdminService {
         return this.admin
     }
 
-    createAdmin(message: string){
+    createAdmin({ name,lastName,rol }: CreatedAdminDto){
         this.admin.push({
             id:(Math.floor(Math.random() * 2000) + 1),
-            name:'Adrian',
-            lastName: 'Yaniri',
-            rol: 'estudiante'
+            name,
+            lastName,
+            rol
         })
 
     }
