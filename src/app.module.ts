@@ -5,6 +5,7 @@ import { StudentModule } from './student/student.module';
 import { AssignmentModule } from './assignment/assignment.module';
 import {ConfigModule} from "@nestjs/config";
 import { DatabaseModule } from './database/database.module';
+import {JtpModule} from "./jtp/jtp.module";
 import * as Joi from '@hapi/joi';
 
 
@@ -22,6 +23,7 @@ import * as Joi from '@hapi/joi';
               PORT: Joi.number(),
           })
       }),
+      JtpModule,
       StudentModule,
       AssignmentModule,
       DatabaseModule
