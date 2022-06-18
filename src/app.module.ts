@@ -3,10 +3,31 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentModule } from './student/student.module';
 import { AssignmentModule } from './assignment/assignment.module';
+import {ConfigModule} from "@nestjs/config";
+import { DatabaseModule } from './database/database.module';
 import {JtpModule} from "./jtp/jtp.module";
+import * as Joi from '@hapi/joi';
+
+
 
 @Module({
-  imports: [JtpModule, StudentModule, AssignmentModule],
+  imports: [
+      ConfigModule.forRoot({
+          validationSchema: Joi.object({        // valida el formato de las credenciales
+              //HEROKU_URL: Joi.string().required(),
+              HEROKU_HOST: Joi.string().required(),
+              HEROKU_PORT: Joi.number().required(),
+              HEROKU_USER: Joi.string().required(),
+              HEROKU_PASSWORD: Joi.string().required(),
+              HEROKU_DB: Joi.string().required(),
+              PORT: Joi.number(),
+          })
+      }),
+      JtpModule,
+      StudentModule,
+      AssignmentModule,
+      DatabaseModule
+  ] ,
   controllers: [AppController],
   providers: [AppService],
 })
