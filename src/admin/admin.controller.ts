@@ -1,19 +1,25 @@
 import {Body, Controller, Get, HttpCode, HttpStatus, Post} from '@nestjs/common';
-import * as Http from "http";
+
+import {AdminService} from "./admin.service";
+import {Admin} from "./admin.entity";
 
 @Controller('admin')
 export class AdminController {
 
+    constructor(
+        private readonly adminService: AdminService
+    ) {}
+
     @Get()
-    getAllAdmin(){
-        return 'all admin'
+    getAllAdmin(): Admin[] {
+        return this.adminService.getAllAdmin()
     }
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
     createdAdmin(
         @Body('msg') message: string
-    ): string {
-        return 'create admin'
+    ): void {
+        return this.adminService.createAdmin(message)
     }
 }

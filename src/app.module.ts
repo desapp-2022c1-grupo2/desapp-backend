@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import * as Joi from '@hapi/joi';
+
 import { StudentModule } from './student/student.module';
 import { AssignmentModule } from './assignment/assignment.module';
 import {ConfigModule} from "@nestjs/config";
 import { DatabaseModule } from './database/database.module';
 import { AdminModule } from './admin/admin.module';
-import * as Joi from '@hapi/joi';
 
 
 @Module({
@@ -27,7 +27,5 @@ import * as Joi from '@hapi/joi';
       DatabaseModule,
       AdminModule
   ] ,
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
