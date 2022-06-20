@@ -22,11 +22,11 @@ import databaseConfig from "./config/database.config";
       ConfigModule.forRoot({
          isGlobal: true,
           load: [databaseConfig],
-         envFilePath: `.env.${process.env.NODE_ENV || 'development'}`, // default apunta a .env.development
+         envFilePath: `.env.${ process.env.NODE_ENV || 'production'}`, // default apunta a .env.development
          validationSchema: Joi.object({
              NODE_ENV: Joi.string()
                  .valid('development', 'production', 'testing')
-                 .default('development')
+                 .default('production')
 
          })
       }),

@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity('student')
+@Entity('estudiantes')
 export class Student {
 
     @PrimaryGeneratedColumn('increment')
