@@ -4,7 +4,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 export class Admin {
 
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    id?: number;
 
     @Column({name:'nombre'})
     name: string;
@@ -12,6 +12,4 @@ export class Admin {
     @Column()
     lastName: string;
 
-    @Column()
-    rol: string;
 }

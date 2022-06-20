@@ -10,8 +10,4 @@ export class CreatedAdminDto {
     @IsString()
     readonly lastName: string;
 
-    @IsEnum(RolesEnums,{
-        message:`Opciones invalidas. Las opciones son ${EnumToString}`
-    })
-    readonly rol: RolesEnums;
 }

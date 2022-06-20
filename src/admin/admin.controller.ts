@@ -10,8 +10,12 @@ export class AdminController {
     constructor( private readonly adminService: AdminService ) {}
 
     @Get()
-    getAllAdmin(){
-        return this.adminService.getAllAdmin()
+    async getAllAdmin() {
+        const data =await this.adminService.getAllAdmin()
+        return {
+            message: 'datos',
+            data
+        }
     }
 
     @Get('/:id')
@@ -25,7 +29,7 @@ export class AdminController {
     @Post()
     @HttpCode(HttpStatus.CREATED)
     createdAdmin(
-        @Body() dto: CreatedAdminDto ): CreatedAdminDto {
+        @Body() dto: CreatedAdminDto ){
         return this.adminService.createdAdmin(dto)
     }
 }
