@@ -23,13 +23,10 @@ export class AdminService {
         if(! admin ) throw new NotFoundException()
 
         return admin
-
     }
 
     async createdAdmin(dto: CreatedAdminDto) {
         const admin = this.adminRepository.create(dto as any)
         return await this.adminRepository.save(admin)
     }
-
-
 }
