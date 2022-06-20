@@ -12,6 +12,7 @@ import {TYPEORM_CONFIG} from "./config/const";
 import databaseConfig from "./config/database.config";
 
 
+
 @Module({
   imports: [
       TypeOrmModule.forRootAsync({
@@ -30,6 +31,7 @@ import databaseConfig from "./config/database.config";
 
          })
       }),
+      JtpModule,
       StudentModule,
       AssignmentModule,
       AdminModule
