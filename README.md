@@ -58,6 +58,14 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## EndPoints
+
+### Prefijos 
+
+- /api/
+- /api/admin
+- /api/students
+
 ## Docker compose
 ``` bash
 # levanta el contenedor
