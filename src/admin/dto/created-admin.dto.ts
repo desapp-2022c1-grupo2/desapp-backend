@@ -1,4 +1,6 @@
-import {IsString} from "class-validator";
+import {IsEnum, IsString} from "class-validator";
+import {RolesEnums} from "../../enums";
+import { EnumToString } from '../../helpers/enumsToString'
 
 export class CreatedAdminDto {
 
@@ -8,6 +10,8 @@ export class CreatedAdminDto {
     @IsString()
     readonly lastName: string;
 
-    @IsString()
-    readonly rol: string;
+    @IsEnum(RolesEnums,{
+        message:`Opciones invalidas. Las opciones son ${EnumToString}`
+    })
+    readonly rol: RolesEnums;
 }
