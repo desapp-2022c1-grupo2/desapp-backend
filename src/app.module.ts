@@ -10,6 +10,7 @@ import { AdminModule } from './admin/admin.module';
 import {TYPEORM_CONFIG} from "./config/const";
 
 import databaseConfig from "./config/database.config";
+import {JtpModule} from "./jtp/jtp.module";
 
 
 
