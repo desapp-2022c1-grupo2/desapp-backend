@@ -1,35 +1,38 @@
-import {TypeOrmModuleOptions} from "@nestjs/typeorm";
-import {registerAs} from "@nestjs/config";
-import { join } from 'path'
+import { registerAs } from '@nestjs/config';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 
-function typeOrmModuleOptions(): TypeOrmModuleOptions {
+
+function typeormModuleOptions(): TypeOrmModuleOptions {
     return {
-        type: 'mysql',
-        host: process.env.MYSQL_HOST,
-        port: parseInt(process.env.MYSQL_PORT),
-        username:process.env.MYSQL_USER,
-        password:process.env.MYSQL_PASSWORD,
-        database: process.env.MYSQL_DATABASE,
-        entities:[join(__dirname + '../**/**/*entity{.ts,.js}')],
+        type: 'postgres',
+        host: process.env.DATABASE_HOST,
+        port: parseInt(process.env.DATABASE_PORT, 10),
+        username: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE_NAME,
+        entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
         autoLoadEntities: true,
+
 
         /**
          * Implementacion de las migraciones
          */
-        migrations:[ join(__dirname, '../migrations/**/*{.ts,.js}')],
-        migrationsTableName: 'migrations_typeorm',
         migrationsRun: true,
+        migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
+        migrationsTableName: 'migrations_typeorm',
+
 
         /**
-         * Activar solo en dev si es necesario
+         * Activar solo en desarrollo
          */
-        synchronize: false,
+        synchronize: true,
         logging: true,
-        logger:'file'
-    }
+        logger: 'file',
 
+    }
 }
 
 export default registerAs('database', () => ({
-    config: typeOrmModuleOptions()
-}))
+    config: typeormModuleOptions()
+}));
