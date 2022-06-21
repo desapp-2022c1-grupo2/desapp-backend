@@ -1,34 +1,41 @@
+import {TypeOrmModule, TypeOrmModuleOptions} from "@nestjs/typeorm";
+import {ConfigModule, ConfigService} from "@nestjs/config";
+import * as Joi from "@hapi/joi";
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { StudentModule } from './student/student.module';
 import { AssignmentModule } from './assignment/assignment.module';
-import {ConfigModule} from "@nestjs/config";
-import { DatabaseModule } from './database/database.module';
+import { AdminModule } from './admin/admin.module';
+
+import {TYPEORM_CONFIG} from "./config/const";
+
+import databaseConfig from "./config/database.config";
 import {JtpModule} from "./jtp/jtp.module";
-import * as Joi from '@hapi/joi';
 
 
 
 @Module({
   imports: [
+      TypeOrmModule.forRootAsync({
+          inject:[ConfigService],
+          useFactory: (config: ConfigService) =>
+              config.get<TypeOrmModuleOptions>(TYPEORM_CONFIG)
+      }),
       ConfigModule.forRoot({
-          validationSchema: Joi.object({        // valida el formato de las credenciales
-              //HEROKU_URL: Joi.string().required(),
-              HEROKU_HOST: Joi.string().required(),
-              HEROKU_PORT: Joi.number().required(),
-              HEROKU_USER: Joi.string().required(),
-              HEROKU_PASSWORD: Joi.string().required(),
-              HEROKU_DB: Joi.string().required(),
-              PORT: Joi.number(),
-          })
+         isGlobal: true,
+          load: [databaseConfig],
+         envFilePath: `.env.${ process.env.NODE_ENV || 'production'}`, // default apunta a .env.development
+         validationSchema: Joi.object({
+             NODE_ENV: Joi.string()
+                 .valid('development', 'production', 'testing')
+                 .default('production')
+
+         })
       }),
       JtpModule,
       StudentModule,
       AssignmentModule,
-      DatabaseModule
+      AdminModule
   ] ,
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
