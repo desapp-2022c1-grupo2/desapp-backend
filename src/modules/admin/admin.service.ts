@@ -1,32 +1,20 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
-import {CreatedAdminDto} from "./dto";
+import {Injectable} from '@nestjs/common';
 import {Repository} from "typeorm";
 import {Admin} from "./admin.entity";
 import {InjectRepository} from "@nestjs/typeorm";
+import {BaseService} from "../../commons/service.commoms";
 
 @Injectable()
-export class AdminService {
+export class AdminService  extends BaseService<Admin> {
 
     constructor(
         @InjectRepository(Admin)
         private readonly adminRepository: Repository<Admin>
-    ) {}
+    ) { super() }
 
-   async getAllAdmin(): Promise<Admin[]> {
-        return await this.adminRepository.find()
+    getRepository(): Repository<Admin> {
+        return this.adminRepository;
     }
 
-    async getOneAdmin(id: number) {
-        const admin =  await this.adminRepository.findOneBy({
-            id
-        })
-        if(! admin ) throw new NotFoundException()
-
-        return admin
-    }
-
-    async createdAdmin(dto: CreatedAdminDto) {
-        const admin = this.adminRepository.create(dto as any)
-        return await this.adminRepository.save(admin)
-    }
 }
+

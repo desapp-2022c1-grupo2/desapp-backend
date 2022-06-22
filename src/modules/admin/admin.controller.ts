@@ -1,35 +1,20 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Param, ParseFloatPipe, Post} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 
 import {AdminService} from "./admin.service";
 import {Admin} from "./admin.entity";
-import {CreatedAdminDto} from "./dto";
+import {BaseController} from "../../commons/controller.commons";
+import {BaseService} from "../../commons/service.commoms";
 
 @Controller('admin')
-export class AdminController {
+export class AdminController extends BaseController<Admin>{
 
-    constructor( private readonly adminService: AdminService ) {}
-
-    @Get()
-    async getAllAdmin() {
-        const data =await this.adminService.getAllAdmin()
-        return {
-            message: 'datos',
-            data
-        }
+    constructor( private readonly adminService: AdminService ) {
+        super()
     }
 
-    @Get('/:id')
-    getOneAdmin(
-        @Param('id', ParseFloatPipe) id: number
-    )
-    {
-        return this.adminService.getOneAdmin(id)
+    getService(): BaseService<Admin> {
+        return this.adminService
     }
 
-    @Post()
-    @HttpCode(HttpStatus.CREATED)
-    createdAdmin(
-        @Body() dto: CreatedAdminDto ){
-        return this.adminService.createdAdmin(dto)
-    }
+
 }
