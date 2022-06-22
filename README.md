@@ -66,6 +66,15 @@ $ npm run test:cov
 - /api/admin
 - /api/students
 
+## Routers (map)
+
+
+- GET /api/admin/all
+- GET /api/admin/find
+- POST /api/admin/save
+- DELETE /api/admin/delete
+- GET /api/admin/count
+
 ## Docker compose
 ``` bash
 # levanta el contenedor
