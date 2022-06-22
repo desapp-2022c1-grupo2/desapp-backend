@@ -68,7 +68,7 @@ $ npm run test:cov
 
 ## Routers (map)
 
-
+### Admin
 - GET /api/admin/all
 - GET /api/admin/find
 - POST /api/admin/save

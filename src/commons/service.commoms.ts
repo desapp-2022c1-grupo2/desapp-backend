@@ -26,6 +26,10 @@ export abstract class BaseService<T> {
 
     }
 
+    update(id: any, dto: any){
+        return this.getRepository().update(id, dto)
+    }
+
     count(options?: FindManyOptions<T>): Promise<number> {
         return this.getRepository().count(options)
     }
