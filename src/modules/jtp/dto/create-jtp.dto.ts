@@ -1,8 +1,7 @@
-import {IsString} from "class-validator";
-import {PrimaryGeneratedColumn} from "typeorm";
+import {IsNumber, IsString} from "class-validator";
 
 export class CreateJtpDto {
-   @PrimaryGeneratedColumn()
+   @IsNumber()
    jtp_id: number;
 
    @IsString()
@@ -17,7 +16,7 @@ export class CreateJtpDto {
    @IsString()
    clave: string;
 
-   @IsString()
+   @IsNumber()
    materia_id: number
 
 }
