@@ -1,26 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { CreateJtpDto } from './dto/create-jtp.dto';
-import { UpdateJtpDto } from './dto/update-jtp.dto';
+import {Injectable} from '@nestjs/common';
+import {BaseService} from "../../commons/service.commoms";
+import {Jtp} from "./entities/jtp.entity";
+import {Repository} from "typeorm";
+import {InjectRepository} from "@nestjs/typeorm";
 
 @Injectable()
-export class JtpService {
-  create(createJtpDto: CreateJtpDto) {
-    return 'This action adds a new jtp';
+export class JtpService extends BaseService<Jtp> {
+  constructor(
+    @InjectRepository(Jtp)
+    private readonly jtpRepository: Repository<Jtp>
+  ) {
+    super()
   }
 
-  findAll() {
-    return `This action returns all jtp`;
+  getRepository(): Repository<Jtp> {
+    return this.jtpRepository;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} jtp`;
-  }
-
-  update(id: number, updateJtpDto: UpdateJtpDto) {
-    return `This action updates a #${id} jtp`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} jtp`;
-  }
 }
