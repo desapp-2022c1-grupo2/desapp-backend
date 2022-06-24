@@ -13,10 +13,9 @@ export class CreateJtpDto {
    @IsString()
    email: string;
 
-   @IsString()
-   clave: string;
+   // @IsString()
+   // clave: string;
 
    @IsNumber()
    materia_id: number
-
 }

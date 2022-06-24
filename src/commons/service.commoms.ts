@@ -1,5 +1,6 @@
 import {FindManyOptions, Repository} from "typeorm";
 import {NotFoundException} from "@nestjs/common";
+import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
 
 export abstract class BaseService<T> {
 

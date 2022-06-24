@@ -4,9 +4,6 @@ import {CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn} from "typeor
 
 export class BaseEntity {
 
-    @PrimaryGeneratedColumn('increment')
-    id: number
-
     @CreateDateColumn({ name: 'created_at'})
     createdAT: Date
 

@@ -1,7 +1,11 @@
 import {BaseEntity} from "../../../commons/entity/base.entity";
-import {Column} from "typeorm";
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
+@Entity('jtp')
 export class Jtp extends BaseEntity {
+
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({name: 'nombre'})
   name: string;
@@ -12,8 +16,8 @@ export class Jtp extends BaseEntity {
   @Column()
   email: string;
 
-  @Column({name: 'clave'})
-  password: string;
+  // @Column({name: 'clave'})
+  // password: string;
 
   @Column({name: "materia_id"})
   courseId: number;
