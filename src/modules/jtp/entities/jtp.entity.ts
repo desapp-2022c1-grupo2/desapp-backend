@@ -5,7 +5,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 export class Jtp extends BaseEntity {
 
   @PrimaryGeneratedColumn()
-  id: number;
+  jtp_id: number;
 
   @Column({name: 'nombre'})
   name: string;
