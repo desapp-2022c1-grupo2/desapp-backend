@@ -1,8 +1,10 @@
 import {FindManyOptions, Repository} from "typeorm";
 import {NotFoundException} from "@nestjs/common";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {BaseEntity} from "./entity/base.entity";
+import {FindOptionsWhere} from "typeorm/find-options/FindOptionsWhere";
 
-export abstract class BaseService<T> {
+export abstract class BaseService<T extends BaseEntity> {
 
     abstract getRepository(): Repository<T>
 
@@ -10,12 +12,7 @@ export abstract class BaseService<T> {
         return this.getRepository().find()
     }
 
-    async findOne(id: any): Promise<T> {
-        const data = await this.getRepository().findOne(id)
-
-        if(!data) throw new NotFoundException('')
-        return data
-    }
+    abstract findOne(id: number): Promise<T>
 
     async save(entity: T): Promise<T> {
         const data = this.getRepository().create(entity)

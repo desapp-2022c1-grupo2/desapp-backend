@@ -4,8 +4,8 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 @Entity('jtp')
 export class Jtp extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
-  jtp_id: number;
+  @PrimaryGeneratedColumn({name:"jtp_id"})
+  id: number;
 
   @Column({name: 'nombre'})
   name: string;
