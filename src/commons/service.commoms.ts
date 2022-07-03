@@ -1,8 +1,5 @@
 import {FindManyOptions, Repository} from "typeorm";
-import {NotFoundException} from "@nestjs/common";
-import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
 import {BaseEntity} from "./entity/base.entity";
-import {FindOptionsWhere} from "typeorm/find-options/FindOptionsWhere";
 
 export abstract class BaseService<T extends BaseEntity> {
 

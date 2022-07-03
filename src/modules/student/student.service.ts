@@ -1,38 +1,31 @@
-import {Injectable} from '@nestjs/common';
-import {CreateStudentDto} from './dto/create-student.dto';
-import {UpdateStudentDto} from './dto/update-student.dto';
+import {Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {Student} from "./entities/student.entity";
 import {Repository} from "typeorm";
+import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {BaseService} from "../../commons/service.commoms";
 
 @Injectable()
-export class StudentService {
+export class StudentService extends BaseService<Student> {
+
 
   constructor(
-      @InjectRepository(Student)
-      private readonly studentRepository: Repository<Student>
-  ) {}
-
-
-  async getAll(): Promise<Student[]>{
-    return await this.studentRepository.find()
-
+    @InjectRepository(Student)
+    private readonly studentRepository: Repository<Student>
+  ) {
+    super();
   }
 
-  create(createStudentDto: CreateStudentDto) {
-    return 'This action adds a new student';
+  getRepository(): Repository<Student> {
+    return this.studentRepository;
   }
 
+  async findOne(id: number): Promise<Student> {
+    let options: FindOneOptions<Student> = {where: {id}};
+    const data = await this.getRepository().findOne(options)
 
-  findOne(id: number) {
-    return `This action returns a #${id} student`;
+    if (!data) throw new NotFoundException('')
+    return data
   }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} student`;
-  }
 }

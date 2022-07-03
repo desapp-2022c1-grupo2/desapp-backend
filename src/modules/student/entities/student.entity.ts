@@ -7,26 +7,26 @@ export class Student extends BaseEntity {
     @PrimaryGeneratedColumn('increment', {name:'estudiante_id'})
     id: number;
 
-    @Column()
-    nombre: string;
+    @Column({name: 'nombre'})
+    name: string;
 
-    @Column()
-    apellido: string;
+    @Column({name: 'apellido'})
+    lastName: string;
 
-    @Column()
-    mail: string;
+    @Column({name: 'mail'})
+    email: string;
 
-    @Column()
-    clave: string;
+    // @Column()
+    // clave: string;
 
-    @Column()
-    celular: string;
+    @Column({name: 'celular'})
+    phone: string;
 
-    @Column()
+    @Column({name: 'dni'})
     dni: string;
 
-    @Column()
-    fecha_nacimiento: Date;
+    @Column({name: 'fecha_nacimiento'})
+    birthdate: Date;
 
     @Column()
     materia_cursada: number;
@@ -43,11 +43,11 @@ export class Student extends BaseEntity {
     @Column()
     rondina: number;
 
-    @Column()
-    sobre_mi: string;
+    @Column({name: 'sobre_mi'})
+    about: string;
 
-    @Column()
-    imagen: string;
+    @Column({name: 'imagen'})
+    picture: string;
 
     @Column()
     materia2: string;

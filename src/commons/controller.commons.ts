@@ -33,6 +33,7 @@ export abstract class BaseController<T extends BaseEntity> {
     }
 
     @Patch('/:id')
+    @HttpCode(HttpStatus.OK)
     update(@Param('id')id: any, @Body() dto: T ){
         return this.getService().update(id, dto)
     }
