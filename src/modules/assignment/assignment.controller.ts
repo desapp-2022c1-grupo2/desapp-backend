@@ -1,34 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller} from '@nestjs/common';
 import { AssignmentService } from './assignment.service';
-import { CreateAssignmentDto } from './dto/create-assignment.dto';
-import { UpdateAssignmentDto } from './dto/update-assignment.dto';
+import {BaseController} from "../../commons/controller.commons";
+import {Assignment} from "./entities/assignment.entity";
+import {BaseService} from "../../commons/service.commoms";
 
 @Controller('assignments')
-export class AssignmentController {
-  constructor(private readonly assignmentService: AssignmentService) {}
-
-  @Post()
-  create(@Body() createAssignmentDto: CreateAssignmentDto) {
-    return this.assignmentService.create(createAssignmentDto);
+export class AssignmentController extends BaseController<Assignment>{
+  constructor(private readonly assignmentService: AssignmentService) {
+    super()
   }
 
-  @Get()
-  findAll() {
-    return this.assignmentService.findAll();
+  getService(): BaseService<Assignment> {
+    return this.assignmentService
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.assignmentService.findOne(+id);
-  }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAssignmentDto: UpdateAssignmentDto) {
-    return this.assignmentService.update(+id, updateAssignmentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.assignmentService.remove(+id);
-  }
 }

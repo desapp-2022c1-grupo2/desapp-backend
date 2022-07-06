@@ -4,7 +4,6 @@ import {Jtp} from "./entities/jtp.entity";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
-import {Admin} from "../admin/entities/admin.entity";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
