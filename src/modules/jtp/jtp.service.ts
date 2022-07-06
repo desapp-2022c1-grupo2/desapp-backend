@@ -20,7 +20,7 @@ export class JtpService extends BaseService<Jtp> {
   }
 
   async findOne(id: number): Promise<Jtp> {
-    let options: FindOneOptions<Admin> = {where: {id}};
+    let options: FindOneOptions<Jtp> = {where: {id}};
     const data = await this.getRepository().findOne(options)
 
     if(!data) throw new NotFoundException('')
