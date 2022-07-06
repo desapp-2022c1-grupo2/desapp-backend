@@ -5,7 +5,7 @@ import { join } from 'path';
 
 function typeormModuleOptions(): TypeOrmModuleOptions {
     return {
-        type: 'postgres',
+        type: 'mariadb',
         host: process.env.DATABASE_HOST,
         port: parseInt(process.env.DATABASE_PORT, 10),
         username: process.env.DATABASE_USER,
