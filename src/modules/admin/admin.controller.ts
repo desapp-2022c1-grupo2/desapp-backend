@@ -1,9 +1,9 @@
 import { Controller } from '@nestjs/common';
 
 import {AdminService} from "./admin.service";
-import {Admin} from "./admin.entity";
 import {BaseController} from "../../commons/controller.commons";
 import {BaseService} from "../../commons/service.commoms";
+import {Admin} from "./entities/admin.entity";
 
 @Controller('admin')
 export class AdminController extends BaseController<Admin>{

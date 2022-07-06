@@ -1,26 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { CreateJtpDto } from './dto/create-jtp.dto';
-import { UpdateJtpDto } from './dto/update-jtp.dto';
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {BaseService} from "../../commons/service.commoms";
+import {Jtp} from "./entities/jtp.entity";
+import {Repository} from "typeorm";
+import {InjectRepository} from "@nestjs/typeorm";
+import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {Admin} from "../admin/entities/admin.entity";
 
 @Injectable()
-export class JtpService {
-  create(createJtpDto: CreateJtpDto) {
-    return 'This action adds a new jtp';
+export class JtpService extends BaseService<Jtp> {
+  constructor(
+    @InjectRepository(Jtp)
+    private readonly jtpRepository: Repository<Jtp>
+  ) {
+    super()
   }
 
-  findAll() {
-    return `This action returns all jtp`;
+  getRepository(): Repository<Jtp> {
+    return this.jtpRepository;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} jtp`;
+  async findOne(id: number): Promise<Jtp> {
+    let options: FindOneOptions<Jtp> = {where: {id}};
+    const data = await this.getRepository().findOne(options)
+
+    if(!data) throw new NotFoundException('')
+    return data
+
   }
 
-  update(id: number, updateJtpDto: UpdateJtpDto) {
-    return `This action updates a #${id} jtp`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} jtp`;
-  }
 }

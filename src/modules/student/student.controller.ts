@@ -2,35 +2,21 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { StudentService } from './student.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import {BaseController} from "../../commons/controller.commons";
+import {Student} from "./entities/student.entity";
+import { BaseService } from 'src/commons/service.commoms';
+import {AdminService} from "../admin/admin.service";
+import {Admin} from "../admin/entities/admin.entity";
 
 @Controller('students')
-export class StudentController {
-  constructor(private readonly studentService: StudentService) {}
+export class StudentController extends BaseController<Student> {
 
-  @Get()
-  findAll() {
-    return this.studentService.getAll();
+  constructor( private readonly studentService: StudentService ) {
+    super()
   }
 
-  @Post()
-  create(@Body() createStudentDto: CreateStudentDto) {
-    return this.studentService.create(createStudentDto);
+  getService(): BaseService<Student> {
+    return this.studentService
   }
 
-
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.studentService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentService.update(+id, updateStudentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.studentService.remove(+id);
-  }
 }
