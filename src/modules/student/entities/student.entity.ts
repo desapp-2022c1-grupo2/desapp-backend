@@ -1,30 +1,32 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity} from "../../../commons/entity/base.entity";
 
 @Entity('estudiante')
-export class Student {
-    @PrimaryGeneratedColumn()
-    estudiante_id: number;
+export class Student extends BaseEntity {
 
-    @Column()
-    nombre: string;
+    @PrimaryGeneratedColumn('increment', {name:'estudiante_id'})
+    id: number;
 
-    @Column()
-    apellido: string;
+    @Column({name: 'nombre'})
+    name: string;
 
-    @Column()
-    mail: string;
+    @Column({name: 'apellido'})
+    lastName: string;
 
-    @Column()
-    clave: string;
+    @Column({name: 'mail'})
+    email: string;
 
-    @Column()
-    celular: string;
+    // @Column()
+    // clave: string;
 
-    @Column()
+    @Column({name: 'celular'})
+    phone: string;
+
+    @Column({name: 'dni'})
     dni: string;
 
-    @Column()
-    fecha_nacimiento: Date;
+    @Column({name: 'fecha_nacimiento'})
+    birthdate: Date;
 
     @Column()
     materia_cursada: number;
@@ -41,11 +43,11 @@ export class Student {
     @Column()
     rondina: number;
 
-    @Column()
-    sobre_mi: string;
+    @Column({name: 'sobre_mi'})
+    about: string;
 
-    @Column()
-    imagen: string;
+    @Column({name: 'imagen'})
+    picture: string;
 
     @Column()
     materia2: string;

@@ -1,34 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { JtpService } from './jtp.service';
-import { CreateJtpDto } from './dto/create-jtp.dto';
-import { UpdateJtpDto } from './dto/update-jtp.dto';
+import {Controller} from '@nestjs/common';
+import {JtpService} from './jtp.service';
+import {BaseController} from "../../commons/controller.commons";
+import {Jtp} from "./entities/jtp.entity";
+import {BaseService} from "../../commons/service.commoms";
 
 @Controller('jtp')
-export class JtpController {
-  constructor(private readonly jtpService: JtpService) {}
+export class JtpController extends BaseController<Jtp> {
 
-  @Post()
-  create(@Body() createJtpDto: CreateJtpDto) {
-    return this.jtpService.create(createJtpDto);
+  constructor(private readonly jtpService: JtpService) {
+    super()
   }
 
-  @Get()
-  findAll() {
-    return this.jtpService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jtpService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateJtpDto: UpdateJtpDto) {
-    return this.jtpService.update(+id, updateJtpDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.jtpService.remove(+id);
+  getService(): BaseService<Jtp> {
+    return this.jtpService;
   }
 }

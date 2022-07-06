@@ -3,14 +3,14 @@ import {ConfigModule, ConfigService} from "@nestjs/config";
 import * as Joi from "@hapi/joi";
 import { Module } from '@nestjs/common';
 
-import { StudentModule } from './student/student.module';
-import { AssignmentModule } from './assignment/assignment.module';
-import { AdminModule } from './admin/admin.module';
+import { StudentModule } from './modules/student/student.module';
+import { AssignmentModule } from './modules/assignment/assignment.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 import {TYPEORM_CONFIG} from "./config/const";
 
 import databaseConfig from "./config/database.config";
-import {JtpModule} from "./jtp/jtp.module";
+import {JtpModule} from "./modules/jtp/jtp.module";
 
 
 
@@ -24,11 +24,11 @@ import {JtpModule} from "./jtp/jtp.module";
       ConfigModule.forRoot({
          isGlobal: true,
           load: [databaseConfig],
-         envFilePath: `.env.${ process.env.NODE_ENV || 'production'}`, // default apunta a .env.development
+         envFilePath: `.env.${ process.env.NODE_ENV || 'development'}`, // default apunta a .env.development
          validationSchema: Joi.object({
              NODE_ENV: Joi.string()
                  .valid('development', 'production', 'testing')
-                 .default('production')
+                 .default('development')
 
          })
       }),

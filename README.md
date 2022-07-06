@@ -66,6 +66,15 @@ $ npm run test:cov
 - /api/admin
 - /api/students
 
+## Routers (map)
+
+### Admin
+- GET /api/admin/
+- GET /api/admin/:id
+- POST /api/admin/
+- DELETE /api/admin/:id
+- GET /api/admin/count
+
 ## Docker compose
 ``` bash
 # levanta el contenedor
@@ -82,11 +91,11 @@ NODE_EVN=development
 
 ## Credentials
 
-- DATBASE_HOST
+- DATABASE_HOST
 
 - DATABASE_ROOT_PASSWORD
 
-- DATABASE_DATABAS
+- DATABASE_DATABASE
 
 - DATABASE_USER
 
