@@ -1,4 +1,4 @@
-import {BaseEntity} from "../../../commons/entity/base.entity";
+import {BaseEntity} from "../../../commons";
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity('jtp')

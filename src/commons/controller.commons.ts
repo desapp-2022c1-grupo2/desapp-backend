@@ -1,7 +1,7 @@
 import {FindManyOptions} from "typeorm";
-import {BaseService} from "./service.commoms";
+import {BaseService} from "./service.commons";
 import {Body, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post} from "@nestjs/common";
-import {BaseEntity} from "./entity/base.entity";
+import {BaseEntity} from "./entity";
 
 export abstract class BaseController<T extends BaseEntity> {
 

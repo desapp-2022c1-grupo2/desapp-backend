@@ -3,7 +3,7 @@ import {ConfigService} from "@nestjs/config";
 import {Logger, ValidationPipe} from "@nestjs/common";
 
 import { AppModule } from './app.module';
-import {SERVER_PORT} from "./config/const";
+import {SERVER_PORT} from "./config";
 
 
 async function bootstrap() {

@@ -1,7 +1,5 @@
 import {CreateDateColumn, UpdateDateColumn} from "typeorm";
 
-
-
 export abstract class BaseEntity {
 
     abstract id: number

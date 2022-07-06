@@ -1,9 +1,9 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
-import {Student} from "./entities/student.entity";
+import {Student} from "./entities";
 import {Repository} from "typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
-import {BaseService} from "../../commons/service.commoms";
+import {BaseService} from "../../commons";
 
 @Injectable()
 export class StudentService extends BaseService<Student> {

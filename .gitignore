@@ -112,3 +112,5 @@ build/
 tmp/
 temp/
 .mysql-data
+
+.DS_Store
