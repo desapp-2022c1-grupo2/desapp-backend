@@ -4,7 +4,7 @@ import * as Joi from "@hapi/joi";
 import { Module } from '@nestjs/common';
 
 import { StudentModule } from './modules/student/student.module';
-import { AssignmentModule } from './modules';
+import {AssignmentModule, CourseModule} from './modules';
 import { AdminModule } from './modules';
 
 import {TYPEORM_CONFIG} from "./config";
@@ -35,7 +35,8 @@ import {JtpModule} from "./modules";
       JtpModule,
       StudentModule,
       AssignmentModule,
-      AdminModule
+      AdminModule,
+      CourseModule,
   ] ,
 })
 export class AppModule {}
