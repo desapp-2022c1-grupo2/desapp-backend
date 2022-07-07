@@ -14,5 +14,4 @@ export class AssignmentController extends BaseController<Assignment>{
     return this.assignmentService
   }
 
-
 }

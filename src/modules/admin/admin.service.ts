@@ -4,6 +4,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {BaseService} from "../../commons/service.commoms";
 import {Admin} from "./entities/admin.entity";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {CreatedAdminDto} from "./dto";
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
@@ -27,6 +28,10 @@ export class AdminService extends BaseService<Admin> {
     return data
   }
 
+  async save(admin: CreatedAdminDto) {
+    const data = this.getRepository().create(admin)
+    return await this.getRepository().save(data)
+  }
 
 }
 
