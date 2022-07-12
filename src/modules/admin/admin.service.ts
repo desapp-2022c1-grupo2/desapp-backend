@@ -1,8 +1,8 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
-import {BaseService} from "../../commons/service.commoms";
-import {Admin} from "./entities/admin.entity";
+import {BaseService} from "../../commons";
+import {Admin} from "./entities";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
 
 @Injectable()

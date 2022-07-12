@@ -4,13 +4,13 @@ import * as Joi from "@hapi/joi";
 import { Module } from '@nestjs/common';
 
 import { StudentModule } from './modules/student/student.module';
-import { AssignmentModule } from './modules/assignment/assignment.module';
-import { AdminModule } from './modules/admin/admin.module';
+import { AssignmentModule } from './modules';
+import { AdminModule } from './modules';
 
-import {TYPEORM_CONFIG} from "./config/const";
+import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config";
-import {JtpModule} from "./modules/jtp/jtp.module";
+import {JtpModule} from "./modules";
 
 
 
