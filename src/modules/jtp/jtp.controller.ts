@@ -1,10 +1,10 @@
 import {Controller} from '@nestjs/common';
 import {JtpService} from './jtp.service';
-import {BaseController} from "../../commons/controller.commons";
-import {Jtp} from "./entities/jtp.entity";
-import {BaseService} from "../../commons/service.commoms";
+import {BaseController, BaseService} from "../../commons";
+import {Jtp} from "./entities";
 import {JoinColumn, ManyToOne} from "typeorm";
-import {Assignment} from "../assignment/entities/assignment.entity";
+import {Assignment} from "../assignment";
+
 
 @Controller('jtp')
 export class JtpController extends BaseController<Jtp> {
@@ -22,5 +22,3 @@ export class JtpController extends BaseController<Jtp> {
   assignment: Assignment
 
 }
-
-

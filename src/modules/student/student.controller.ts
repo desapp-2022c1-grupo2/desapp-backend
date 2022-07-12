@@ -1,9 +1,8 @@
 import { Controller} from '@nestjs/common';
 import { StudentService } from './student.service';
-
-import {BaseController} from "../../commons/controller.commons";
-import {Student} from "./entities/student.entity";
-import { BaseService } from 'src/commons/service.commoms';
+import {BaseController} from "../../commons";
+import {Student} from "./entities";
+import { BaseService } from 'src/commons/service.commons';
 
 @Controller('students')
 export class StudentController extends BaseController<Student> {

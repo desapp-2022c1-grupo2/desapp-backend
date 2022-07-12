@@ -1,6 +1,6 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
-import {BaseService} from "../../commons/service.commoms";
-import {Jtp} from "./entities/jtp.entity";
+import {BaseService} from "../../commons";
+import {Jtp} from "./entities";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";

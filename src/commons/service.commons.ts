@@ -1,5 +1,5 @@
 import {FindManyOptions, Repository} from "typeorm";
-import {BaseEntity} from "./entity/base.entity";
+import {BaseEntity} from "./entity";
 
 export abstract class BaseService<T extends BaseEntity> {
 
