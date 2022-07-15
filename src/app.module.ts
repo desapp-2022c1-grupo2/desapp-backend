@@ -9,6 +9,7 @@ import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config";
 import {JtpModule} from "./modules";
+import { TpModule } from './modules/tp/tp.module';
 
 
 
@@ -35,6 +36,7 @@ import {JtpModule} from "./modules";
       AssignmentModule,
       AdminModule,
       CourseModule,
+      TpModule,
   ] ,
 })
 export class AppModule {}
