@@ -14,4 +14,8 @@ export class TpService {
     async findAllTps(): Promise<TpEntiy[]> {
         return await this.tpsRepository.find()
     }
+
+    async findByIdTp(id: number): Promise<TpEntiy>{
+        return await this.tpsRepository.findOneBy({id} )
+    }
 }
