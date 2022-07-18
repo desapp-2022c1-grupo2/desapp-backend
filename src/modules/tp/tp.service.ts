@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {TpEntiy} from "./entities/tp.entity";
 import {Repository} from "typeorm";
@@ -12,10 +12,18 @@ export class TpService {
     ) {}
 
     async findAllTps(): Promise<TpEntiy[]> {
-        return await this.tpsRepository.find()
+        const data = await this.tpsRepository.find()
+
+        if(! data) throw new NotFoundException('Error: does not exist data')
+
+        return data
     }
 
     async findByIdTp(id: number): Promise<TpEntiy>{
-        return await this.tpsRepository.findOneBy({id} )
+        const data =  await this.tpsRepository.findOneBy({id} )
+
+        if(! data) throw new NotFoundException( `Error does not exist TP with id: ${id}`)
+
+        return data
     }
 }
