@@ -20,7 +20,7 @@ export class TpEntiy extends BaseEntity {
     @Column({ name: 'url'})
     url: string;
 
-    @Column( { name: 'description'})
+    @Column( { name: 'descripcion'})
     description: string;
 
 }
