@@ -3,7 +3,7 @@ import {BaseEntity} from "../../../commons";
 
 
 @Entity('trabajo')
-export class TpEntiy extends BaseEntity {
+export class Assignment extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment',{name:'trabajo_id'})
     id: number;
@@ -20,7 +20,7 @@ export class TpEntiy extends BaseEntity {
     @Column({ name: 'url'})
     url: string;
 
-    @Column( { name: 'description'})
+    @Column( { name: 'descripcion'})
     description: string;
 
 }

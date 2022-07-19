@@ -9,7 +9,7 @@ import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config";
 import {JtpModule} from "./modules";
-import { TpModule } from './modules/tp/tp.module';
+import { TpModule } from './modules/assignment/tp.module';
 
 
 

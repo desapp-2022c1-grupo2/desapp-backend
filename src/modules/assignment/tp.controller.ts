@@ -1,6 +1,6 @@
 import {Controller, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
 import {TpService} from "./tp.service";
-import {TpEntiy} from "./entities/tp.entity";
+import {TpEntiy} from "./entities/assignment";
 
 @Controller('tp')
 export class TpController {
