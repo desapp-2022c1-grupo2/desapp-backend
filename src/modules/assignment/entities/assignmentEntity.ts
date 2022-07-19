@@ -3,7 +3,7 @@ import {BaseEntity} from "../../../commons";
 
 
 @Entity('trabajo')
-export class Assignment extends BaseEntity {
+export class AssignmentEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment',{name:'trabajo_id'})
     id: number;

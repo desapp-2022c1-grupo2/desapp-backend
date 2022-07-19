@@ -1,17 +1,17 @@
 import {Controller, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
-import {TpService} from "./tp.service";
-import {TpEntiy} from "./entities/assignment";
+import {AssignmentService} from "./tp.service";
+import {AssignmentEntity} from "./entities/assignmentEntity";
 
 @Controller('tp')
-export class TpController {
+export class AssignmentController {
 
     constructor(
-        private readonly tpsService: TpService
+        private readonly tpsService: AssignmentService
     ) {}
 
     @Get()
     @HttpCode(HttpStatus.OK)
-    async findAllTps(): Promise<TpEntiy[]>{
+    async findAllTps(): Promise<AssignmentEntity[]>{
         return await this.tpsService.findAllTps()
     }
 
@@ -19,7 +19,7 @@ export class TpController {
     @HttpCode(HttpStatus.OK)
     async findByIdTp(
         @Param('id') id: number
-    ): Promise <TpEntiy>{
+    ): Promise <AssignmentEntity>{
         return await this.tpsService.findByIdTp(id)
     }
 

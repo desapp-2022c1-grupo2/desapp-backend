@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TpController } from './tp.controller';
-import { TpService } from './tp.service';
+import {AssignmentController} from './tp.controller';
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {Assignment} from "./entities/assignment";
+import {AssignmentEntity} from "./entities/assignmentEntity";
+import {AssignmentService} from "./tp.service";
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Assignment])],
-  controllers: [TpController],
-  providers: [TpService]
+  imports: [TypeOrmModule.forFeature([AssignmentEntity])],
+  controllers: [AssignmentController],
+  providers: [AssignmentService]
 })
 export class AssignmentModule {}
