@@ -2,7 +2,7 @@ import {Controller, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
 import {AssignmentService} from "./assignment.service";
 import {AssignmentEntity} from "./entities";
 
-@Controller('tp')
+@Controller('assignment')
 export class AssignmentController {
 
     constructor(
@@ -22,5 +22,4 @@ export class AssignmentController {
     ): Promise <AssignmentEntity>{
         return await this.tpsService.findByIdTp(id)
     }
-
 }
