@@ -1,6 +1,6 @@
 import {Controller, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
-import {AssignmentService} from "./tp.service";
-import {AssignmentEntity} from "./entities/assignmentEntity";
+import {AssignmentService} from "./assignment.service";
+import {AssignmentEntity} from "./entities";
 
 @Controller('tp')
 export class AssignmentController {

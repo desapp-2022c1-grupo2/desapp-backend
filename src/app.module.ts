@@ -8,7 +8,7 @@ import {StudentModule, AdminModule, CourseModule, JtpModule} from './modules';
 import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config"
-import {AssignmentModule} from "./modules/assignment/tp.module";
+import {AssignmentModule} from "./modules";
 
 @Module({
   imports: [
