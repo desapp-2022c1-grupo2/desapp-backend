@@ -10,11 +10,11 @@ export class Course extends BaseEntity {
   @Column({name: 'nombre'})
   name: string;
 
-  @Column({name: 'materia_padre_id'})
-  parentCourseId: number;
+  // @Column({name: 'materia_padre_id', type: "int"})
+  // parentCourseId: number | null;
 
-  @Column({name: 'anio'})
-  year: number;
+  // @Column({name: 'anio', type:"varchar", length: "255"})
+  // year: string;
 
   @Column({name: 'es_cursada_anterior'})
   isPreviousCourse: number;
