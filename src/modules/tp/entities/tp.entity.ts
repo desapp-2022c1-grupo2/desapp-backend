@@ -2,7 +2,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 import {BaseEntity} from "../../../commons";
 
 
-@Entity('trabajo')
+@Entity('assignment')
 export class TpEntiy extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment',{name:'trabajo_id'})
