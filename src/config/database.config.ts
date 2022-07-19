@@ -14,7 +14,6 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
         entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
         autoLoadEntities: true,
 
-
         /**
          * Implementacion de las migraciones
          */
@@ -22,14 +21,12 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
         migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
         migrationsTableName: 'migrations_typeorm',
 
-
         /**
          * Activar solo en desarrollo
          */
         synchronize: true,
         logging: true,
         logger: 'file',
-
     }
 }
 
