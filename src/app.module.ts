@@ -3,16 +3,12 @@ import {ConfigModule, ConfigService} from "@nestjs/config";
 import * as Joi from "@hapi/joi";
 import { Module } from '@nestjs/common';
 
-import {StudentModule, AssignmentModule, AdminModule, CourseModule, JtpModule} from './modules';
+import {StudentModule, AdminModule, CourseModule, JtpModule} from './modules';
 
 import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config"
-import {JtpModule} from "./modules";
-import { TpModule } from './modules/assignment/tp.module';
-
-
-
+import {AssignmentModule} from "./modules/assignment/tp.module";
 
 @Module({
   imports: [
@@ -37,7 +33,6 @@ import { TpModule } from './modules/assignment/tp.module';
       AssignmentModule,
       AdminModule,
       CourseModule,
-      TpModule,
   ] ,
 })
 export class AppModule {}
