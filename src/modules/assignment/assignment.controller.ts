@@ -1,34 +1,25 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { AssignmentService } from './assignment.service';
-import { CreateAssignmentDto } from './dto/create-assignment.dto';
-import { UpdateAssignmentDto } from './dto/update-assignment.dto';
+import {Controller, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
+import {AssignmentService} from "./assignment.service";
+import {AssignmentEntity} from "./entities";
 
 @Controller('assignment')
 export class AssignmentController {
-  constructor(private readonly assignmentService: AssignmentService) {}
 
-  @Post()
-  create(@Body() createAssignmentDto: CreateAssignmentDto) {
-    return this.assignmentService.create(createAssignmentDto);
-  }
+    constructor(
+        private readonly tpsService: AssignmentService
+    ) {}
 
-  @Get()
-  findAll() {
-    return this.assignmentService.findAll();
-  }
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    async findAllTps(): Promise<AssignmentEntity[]>{
+        return await this.tpsService.findAllTps()
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.assignmentService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAssignmentDto: UpdateAssignmentDto) {
-    return this.assignmentService.update(+id, updateAssignmentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.assignmentService.remove(+id);
-  }
+    @Get('/:id')
+    @HttpCode(HttpStatus.OK)
+    async findByIdTp(
+        @Param('id') id: number
+    ): Promise <AssignmentEntity>{
+        return await this.tpsService.findByIdTp(id)
+    }
 }

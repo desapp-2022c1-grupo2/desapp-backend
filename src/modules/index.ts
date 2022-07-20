@@ -1,5 +1,5 @@
 export * from './jtp'
 export * from './admin'
 export * from './student'
-export * from './assignment'
 export * from './course'
+export * from './assignment'
