@@ -2,7 +2,6 @@ import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 
-
 function typeormModuleOptions(): TypeOrmModuleOptions {
     return {
         type: 'mariadb',

@@ -4,6 +4,7 @@ import {Jtp} from "./entities";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {Course} from "../course";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
@@ -15,8 +16,9 @@ export class JtpService extends BaseService<Jtp> {
   }
 
   getRepository(): Repository<Jtp> {
-    return this.jtpRepository;
+    return this.jtpRepository
   }
+
 
   async findOne(id: number): Promise<Jtp> {
     let options: FindOneOptions<Jtp> = {where: {id}};
