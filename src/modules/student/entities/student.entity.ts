@@ -16,8 +16,8 @@ export class Student extends BaseEntity {
     @Column({name: 'mail'})
     email: string;
 
-    // @Column()
-    // clave: string;
+    @Column({name: "clave", type: "varchar", length: 255})
+    password: string;
 
     @Column({name: 'celular'})
     phone: string;
@@ -25,10 +25,10 @@ export class Student extends BaseEntity {
     @Column({name: 'dni'})
     dni: string;
 
-    @Column({name: 'fecha_nacimiento'})
-    birthdate: Date;
+    @Column({name: 'fecha_nacimiento', type: "date"})
+    birthDate: Date;
 
-    @Column()
+    @Column({type: "int"})
     materia_cursada: number;
 
     @Column()
@@ -40,19 +40,19 @@ export class Student extends BaseEntity {
     @Column()
     comision: number;
 
-    @Column()
+    @Column({type: "tinyint"})
     rondina: number;
 
-    @Column({name: 'sobre_mi'})
+    @Column({name: 'sobre_mi', type: "text"})
     about: string;
 
     @Column({name: 'imagen'})
     picture: string;
 
-    @Column()
+    @Column({type: "varchar", length: 245})
     materia2: string;
 
-    @Column()
+    @Column({type: "tinyint"})
     habilitado: number;
 
 }
