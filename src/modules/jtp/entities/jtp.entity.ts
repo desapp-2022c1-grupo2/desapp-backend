@@ -16,8 +16,8 @@ export class Jtp extends BaseEntity {
   @Column()
   email: string;
 
-  // @Column({name: 'clave'})
-  // password: string;
+  @Column({name: 'clave',type: "varchar", length: 255})
+  password: string;
 
   @Column({name: "materia_id"})
   courseId: number;
