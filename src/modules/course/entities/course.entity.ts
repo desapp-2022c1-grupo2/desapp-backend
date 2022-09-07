@@ -10,7 +10,7 @@ export class Course extends BaseEntity {
   @Column({name: 'nombre'})
   name: string;
 
-  @Column({name: 'materia_padre_id'})
+  @Column({name: 'materia_padre_id', type: "int"})
   parentCourseId: number;
 
   @Column({name: 'anio'})
