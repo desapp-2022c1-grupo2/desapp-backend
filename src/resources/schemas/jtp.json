@@ -1,0 +1,138 @@
+[
+  {
+    "jtp_id": "2",
+    "nombre": "Dise&ntilde;o 1",
+    "apellido": "Uno",
+    "email": "d1@rondina.com",
+    "clave": "taller_2020",
+    "materia_id": "29"
+  },
+  {
+    "jtp_id": "3",
+    "nombre": "Dise&ntilde;o 4",
+    "apellido": "Cuatro",
+    "email": "d4@rondina.com",
+    "clave": "taller_2020",
+    "materia_id": "32"
+  },
+  {
+    "jtp_id": "4",
+    "nombre": "Dise&ntilde;o 3",
+    "apellido": "Tres",
+    "email": "d3@rondina.com",
+    "clave": "taller_2020",
+    "materia_id": "31"
+  },
+  {
+    "jtp_id": "5",
+    "nombre": "Dise&ntilde;o 2",
+    "apellido": "Dos",
+    "email": "d2@rondina.com",
+    "clave": "taller_2020",
+    "materia_id": "30"
+  },
+  {
+    "jtp_id": "6",
+    "nombre": "Dise&ntilde;o 5",
+    "apellido": "Cinco",
+    "email": "d5@rondina.com",
+    "clave": "taller_2020",
+    "materia_id": "33"
+  },
+  {
+    "jtp_id": "7",
+    "nombre": "Lis",
+    "apellido": "Martinez",
+    "email": "lis@rondina.com",
+    "clave": "lis2020",
+    "materia_id": "31"
+  },
+  {
+    "jtp_id": "8",
+    "nombre": "Tecno",
+    "apellido": "Industrial",
+    "email": "tecno@rondina.com",
+    "clave": "tecno123",
+    "materia_id": "34"
+  },
+  {
+    "jtp_id": "9",
+    "nombre": "Matias",
+    "apellido": "herraiz",
+    "email": "matias.herraiz@fadu.uba.ar",
+    "clave": "matias_123",
+    "materia_id": "32"
+  },
+  {
+    "jtp_id": "10",
+    "nombre": "Jeremias",
+    "apellido": "Rizzo",
+    "email": "jererizzo@gmail.com",
+    "clave": "jere_123",
+    "materia_id": "32"
+  },
+  {
+    "jtp_id": "11",
+    "nombre": "Maria",
+    "apellido": "Vila Diez",
+    "email": "mariaeugenia.viladiez@fadu.uba.ar",
+    "clave": "maria_123",
+    "materia_id": "32"
+  },
+  {
+    "jtp_id": "12",
+    "nombre": "Solange",
+    "apellido": "Verre",
+    "email": "solange.verre@fadu.uba.ar",
+    "clave": "solange_123",
+    "materia_id": "32"
+  },
+  {
+    "jtp_id": "13",
+    "nombre": "Eduardo",
+    "apellido": "Chiarella",
+    "email": "eduardo.chiarella@gmail.com",
+    "clave": "edu_123",
+    "materia_id": "32"
+  },
+  {
+    "jtp_id": "14",
+    "nombre": "Agustina",
+    "apellido": "Sanchez",
+    "email": "agus@rondina.com",
+    "clave": "di32020",
+    "materia_id": "31"
+  },
+  {
+    "jtp_id": "15",
+    "nombre": "Juan",
+    "apellido": "Tessarolo",
+    "email": "juan@rondina.com",
+    "clave": "di32020",
+    "materia_id": "31"
+  },
+  {
+    "jtp_id": "16",
+    "nombre": "Pilar",
+    "apellido": "Cebey",
+    "email": "pili@rondina.com",
+    "clave": "di32020",
+    "materia_id": "31"
+  },
+  {
+    "jtp_id": "17",
+    "nombre": "Eugenia",
+    "apellido": "Ruiz",
+    "email": "euge@rondina.com",
+    "clave": "di32020",
+    "materia_id": "31"
+  },
+  {
+    "jtp_id": "18",
+    "nombre": "Carlos",
+    "apellido": "Laumann",
+    "email": "kiva@europe.com",
+    "clave": "carlos123",
+    "materia_id": "32"
+  }
+]

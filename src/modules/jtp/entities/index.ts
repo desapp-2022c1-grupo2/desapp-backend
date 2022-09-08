@@ -1,0 +1,1 @@
+export * from './jtp.entity'
