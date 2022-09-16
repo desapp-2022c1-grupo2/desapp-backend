@@ -7,10 +7,13 @@ export class Admin extends BaseEntity {
   @PrimaryGeneratedColumn({type: "int"})
   id: number;
 
-  @Column({name: 'nombre'})
+  @Column()
   name: string;
 
   @Column()
   lastName: string;
+
+  @Column()
+  password: string;
 
 }
