@@ -1,7 +1,8 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity} from "../../../commons";
 
 @Entity('trabajo')
-export class AssignmentEntity {
+export class Assignment extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment',{name:'trabajo_id',})
     id: number;

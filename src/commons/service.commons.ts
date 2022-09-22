@@ -1,12 +1,17 @@
 import {FindManyOptions, Repository} from "typeorm";
 import {BaseEntity} from "./entity";
+import {replaceSpecialCharactersForEachField} from "../helpers/stringUtils";
 
 export abstract class BaseService<T extends BaseEntity> {
 
     abstract getRepository(): Repository<T>
 
-    findAll(): Promise<T[]>{
-        return this.getRepository().find()
+    async findAll(): Promise<T[]> {
+        let entities = await this.getRepository().find();
+        entities.forEach(entity => {
+            replaceSpecialCharactersForEachField(entity);
+        })
+        return entities;
     }
 
     abstract findOne(id: number): Promise<T>

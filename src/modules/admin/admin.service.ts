@@ -22,11 +22,9 @@ export class AdminService extends BaseService<Admin> {
   async findOne(id: number): Promise<Admin> {
     let options: FindOneOptions<Admin> = {where: {id}};
     const data = await this.getRepository().findOne(options)
-
     if (!data) throw new NotFoundException('')
     return data
   }
-
 
 }
 

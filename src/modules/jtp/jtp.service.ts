@@ -4,6 +4,7 @@ import {Jtp} from "./entities";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {fixSpecialCharacters, replaceSpecialCharactersForEachField} from "../../helpers/stringUtils";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
@@ -20,11 +21,10 @@ export class JtpService extends BaseService<Jtp> {
 
   async findOne(id: number): Promise<Jtp> {
     let options: FindOneOptions<Jtp> = {where: {id}};
-    const data = await this.getRepository().findOne(options)
-
-    if(!data) throw new NotFoundException('')
-    return data
-
+    const entity = await this.getRepository().findOne(options);
+    if(!entity) throw new NotFoundException('')
+    replaceSpecialCharactersForEachField(entity);
+    return entity;
   }
 
 }
