@@ -9,6 +9,11 @@ import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config"
 import {AssignmentModule} from "./modules";
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import {AppController} from "./app.controller";
+import {JwtAuthGuard} from "./auth";
+import {APP_GUARD} from "@nestjs/core";
 
 @Module({
   imports: [
@@ -33,6 +38,15 @@ import {AssignmentModule} from "./modules";
       AssignmentModule,
       AdminModule,
       CourseModule,
+      AuthModule,
+      UsersModule
   ] ,
+    controllers: [AppController],
+    providers: [
+        {
+            provide: APP_GUARD,
+            useClass: JwtAuthGuard,
+        },
+    ],
 })
 export class AppModule {}
