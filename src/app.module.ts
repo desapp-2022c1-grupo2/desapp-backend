@@ -1,16 +1,14 @@
 import {TypeOrmModule, TypeOrmModuleOptions} from "@nestjs/typeorm";
 import {ConfigModule, ConfigService} from "@nestjs/config";
 import * as Joi from "@hapi/joi";
-import { Module } from '@nestjs/common';
+import {Module} from '@nestjs/common';
 
-import {StudentModule, AdminModule, CourseModule, JtpModule} from './modules';
+import {AdminModule, AssignmentModule, CourseModule, JtpModule, StudentModule} from './modules';
 
 import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config"
-import {AssignmentModule} from "./modules";
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import {AuthModule} from './auth/auth.module';
 import {AppController} from "./app.controller";
 import {JwtAuthGuard} from "./auth";
 import {APP_GUARD} from "@nestjs/core";
@@ -39,7 +37,6 @@ import {APP_GUARD} from "@nestjs/core";
       AdminModule,
       CourseModule,
       AuthModule,
-      UsersModule
   ] ,
     controllers: [AppController],
     providers: [
