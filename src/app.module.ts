@@ -8,7 +8,7 @@ import {AdminModule, AssignmentModule, CourseModule, JtpModule, StudentModule} f
 import {TYPEORM_CONFIG} from "./config";
 
 import databaseConfig from "./config/database.config"
-import {AuthModule} from './auth/auth.module';
+import {AuthModule} from './auth';
 import {AppController} from "./app.controller";
 import {JwtAuthGuard} from "./auth";
 import {APP_GUARD} from "@nestjs/core";

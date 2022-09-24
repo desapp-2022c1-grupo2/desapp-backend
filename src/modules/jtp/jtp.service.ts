@@ -4,6 +4,7 @@ import {Jtp} from "./entities";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {Admin} from "../admin";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
@@ -24,7 +25,15 @@ export class JtpService extends BaseService<Jtp> {
 
     if(!data) throw new NotFoundException('')
     return data
-
   }
+
+  async findOneByUsername(username: string): Promise<Jtp | undefined> {
+    let options: FindOneOptions<Admin> = {where: {name: username}};
+    const data = await this.getRepository().findOne(options);
+
+    if (!data) throw new NotFoundException('');
+    return data;
+  }
+
 
 }
