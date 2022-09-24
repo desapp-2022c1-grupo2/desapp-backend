@@ -1,29 +1,27 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
-import {AssignmentEntity} from "./entities";
+import {Assignment} from "./entities";
 import {Repository} from "typeorm";
+import {BaseService} from "../../commons";
 
 @Injectable()
-export class AssignmentService {
+export class AssignmentService extends BaseService<Assignment>{
 
     constructor(
-        @InjectRepository(AssignmentEntity)
-        private readonly tpsRepository: Repository<AssignmentEntity>
-    ) {}
+        @InjectRepository(Assignment)
+        private readonly assignmentRepository: Repository<Assignment>
+    ) {
+        super()
+    }
 
-    async findAllTps(): Promise<AssignmentEntity[]> {
-        const data = await this.tpsRepository.find()
-
-        if(! data) throw new NotFoundException('Error: does not exist data')
+    async findOne(id: number): Promise<Assignment> {
+        const data =  await this.assignmentRepository.findOneBy({id} )
+        if(!data) throw new NotFoundException( `Error: does not exist assignment with id: ${id}`)
 
         return data
     }
 
-    async findByIdTp(id: number): Promise<AssignmentEntity>{
-        const data =  await this.tpsRepository.findOneBy({id} )
-
-        if(! data) throw new NotFoundException( `Error does not exist TP with id: ${id}`)
-
-        return data
+    getRepository(): Repository<Assignment> {
+        return this.assignmentRepository;
     }
 }

@@ -4,6 +4,7 @@ import {Student} from "./entities";
 import {Repository} from "typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
 import {BaseService} from "../../commons";
+import {replaceSpecialCharactersForEachField} from "../../helpers/stringUtils";
 
 @Injectable()
 export class StudentService extends BaseService<Student> {
@@ -22,10 +23,10 @@ export class StudentService extends BaseService<Student> {
 
   async findOne(id: number): Promise<Student> {
     let options: FindOneOptions<Student> = {where: {id}};
-    const data = await this.getRepository().findOne(options)
-
-    if (!data) throw new NotFoundException('')
-    return data
+    const entity = await this.getRepository().findOne(options)
+    if (!entity) throw new NotFoundException('')
+    replaceSpecialCharactersForEachField(entity);
+    return entity
   }
 
 }
