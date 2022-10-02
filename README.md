@@ -29,7 +29,7 @@ Para poder utilizarla,
 - La aplicación necesita un Bearer token como header
 - Se obtiene enviando un POST a `/api/auth/login` enviando como body lo siguiente:
 ```json
-{"username": "usuario_admin_o_jtp", "password": "contraseña"}
+{"username": "email_admin_o_jtp", "password": "contraseña"}
 ```
 Solamente los usuarios Admin y JTP pueden solicitar el login
 
