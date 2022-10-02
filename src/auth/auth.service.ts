@@ -12,22 +12,25 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     // Look for JTP and then for admin
-    let user: Jtp | Admin = await this.jtpService.findOneByUsername(username);
+    let user: Jtp | Admin = await this.jtpService.findOneByEmail(username);
     if (!user){
-       user = await this.adminService.findOneByUsername(username);
+       user = await this.adminService.findOneByEmail(username);
     }
     //TODO: bcrypt
     if (user && user.password === pass) {
       const { password, ...result } = user;
-      return result;
+      // Workaround to RBAC since we can't modify the database
+      let role = user instanceof Jtp ? "Jtp" : "Admin";
+      return {...result, role};
     }
     return null;
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { email: user.email, sub: user.userId };
     return {
       access_token: this.jwtService.sign(payload),
+      user: user,
     };
   }
 }

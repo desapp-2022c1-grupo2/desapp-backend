@@ -34,4 +34,11 @@ export class JtpService extends BaseService<Jtp> {
     return entity;
   }
 
+  async findOneByEmail(email: string): Promise<Jtp | undefined> {
+    let options: FindOneOptions<Jtp> = {where: {email: email}};
+    const entity = await this.getRepository().findOne(options);
+    if (!entity) return null;
+    return entity;
+  }
+
 }
