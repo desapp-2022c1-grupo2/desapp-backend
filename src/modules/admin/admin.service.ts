@@ -43,7 +43,6 @@ export class AdminService extends BaseService<Admin> {
 
   async save(entity: Admin): Promise<Admin> {
     entity.password = await generateHashPassword(entity.password);
-    console.log(entity)
     const data = this.getRepository().create(entity);
     return await this.getRepository().save(data);
   }

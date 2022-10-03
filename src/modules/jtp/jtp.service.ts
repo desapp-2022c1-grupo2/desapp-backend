@@ -42,12 +42,4 @@ export class JtpService extends BaseService<Jtp> {
     if (!entity) return null;
     return entity;
   }
-
-  async save(entity: Jtp): Promise<Jtp> {
-    entity.password = await generateHashPassword(entity.password);
-    console.log(entity)
-    const data = this.getRepository().create(entity);
-    return this.getRepository().save(data);
-  }
-
 }
