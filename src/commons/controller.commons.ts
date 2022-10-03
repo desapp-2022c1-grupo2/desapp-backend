@@ -2,6 +2,7 @@ import {FindManyOptions} from "typeorm";
 import {BaseService} from "./service.commons";
 import {Body, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post} from "@nestjs/common";
 import {BaseEntity} from "./entity";
+import {generateHashPassword} from "../helpers/crypto";
 
 export abstract class BaseController<T extends BaseEntity> {
 
