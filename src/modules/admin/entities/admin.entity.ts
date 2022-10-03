@@ -2,6 +2,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 import {BaseEntity} from "../../../commons";
 
 @Entity('admin')
+// @TableInheritance({ column: { type: "varchar", name: "type" } })
 export class Admin extends BaseEntity {
 
   @PrimaryGeneratedColumn({type: "int"})
@@ -16,7 +17,7 @@ export class Admin extends BaseEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
 }

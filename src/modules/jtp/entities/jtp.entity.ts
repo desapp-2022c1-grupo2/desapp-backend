@@ -13,7 +13,7 @@ export class Jtp extends BaseEntity {
   @Column({name: 'apellido'})
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column({name: 'clave',type: "varchar", length: 255})

@@ -4,6 +4,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {BaseService} from "../../commons";
 import {Admin} from "./entities";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import {generateHashPassword} from "../../helpers/crypto";
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
@@ -39,6 +40,14 @@ export class AdminService extends BaseService<Admin> {
     if (!data) return null;
     return data;
   }
+
+  async save(entity: Admin): Promise<Admin> {
+    entity.password = await generateHashPassword(entity.password);
+    console.log(entity)
+    const data = this.getRepository().create(entity);
+    return await this.getRepository().save(data);
+  }
+
 
 }
 
