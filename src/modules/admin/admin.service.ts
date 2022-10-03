@@ -27,13 +27,6 @@ export class AdminService extends BaseService<Admin> {
     return data
   }
 
-  async findOneByUsername(username: string): Promise<Admin | undefined> {
-    let options: FindOneOptions<Admin> = {where: {name: username}};
-    const data = await this.getRepository().findOne(options);
-    if (!data) throw new NotFoundException('');
-    return data;
-  }
-
   async findOneByEmail(email: string): Promise<Admin | undefined> {
     let options: FindOneOptions<Admin> = {where: {email: email}};
     const data = await this.getRepository().findOne(options);
@@ -46,7 +39,5 @@ export class AdminService extends BaseService<Admin> {
     const data = this.getRepository().create(entity);
     return await this.getRepository().save(data);
   }
-
-
 }
 

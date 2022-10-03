@@ -5,8 +5,6 @@ import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
 import {replaceSpecialCharactersForEachField} from "../../helpers/stringUtils";
-import {Admin} from "../admin";
-import {generateHashPassword} from "../../helpers/crypto";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
@@ -26,13 +24,6 @@ export class JtpService extends BaseService<Jtp> {
     const entity = await this.getRepository().findOne(options);
     if(!entity) throw new NotFoundException('')
     replaceSpecialCharactersForEachField(entity);
-    return entity;
-  }
-
-  async findOneByUsername(username: string): Promise<Jtp | undefined> {
-    let options: FindOneOptions<Jtp> = {where: {name: username}};
-    const entity = await this.getRepository().findOne(options);
-    if (!entity) throw new NotFoundException('');
     return entity;
   }
 
