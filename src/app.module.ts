@@ -18,6 +18,7 @@ import { AuthModule } from './auth';
 import { AppController } from './app.controller';
 import { JwtAuthGuard } from './auth';
 import { APP_GUARD } from '@nestjs/core';
+import { AssignmentSubmittedModule } from './modules/assignment_submitted/assignment_submitted.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { APP_GUARD } from '@nestjs/core';
     AdminModule,
     CourseModule,
     AuthModule,
+    AssignmentSubmittedModule,
   ],
   controllers: [AppController],
   providers: [
