@@ -11,7 +11,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { BaseEntity } from './entity';
-import { generateHashPassword } from '../helpers/crypto';
+
 
 export abstract class BaseController<T extends BaseEntity> {
   abstract getService(): BaseService<T>;
