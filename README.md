@@ -45,6 +45,7 @@ Solamente los usuarios Admin y JTP pueden solicitar el login
 - /api/assignment
 - /api/auth/login
 
+
 ## Routers (map)
 
 ### Admin
@@ -82,10 +83,11 @@ Solamente los usuarios Admin y JTP pueden solicitar el login
 - DELETE /api/assignment/:id
 - PATCH /api/assignment/:id
 - GET /api/assignment/count
-- ### Authentication
+### Authentication
 - POST /api/auth/login
 
-
+### Assignement Submitted
+- GET /api/assignment_submitted/count
 
 ## Docker compose
 ``` bash
