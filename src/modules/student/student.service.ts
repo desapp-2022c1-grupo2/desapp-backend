@@ -26,4 +26,8 @@ export class StudentService extends BaseService<Student> {
     replaceSpecialCharactersForEachField(entity);
     return entity;
   }
+
+  async countAll(): Promise<number> {
+    return this.getRepository().count();
+  }
 }

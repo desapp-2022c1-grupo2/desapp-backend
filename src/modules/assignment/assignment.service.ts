@@ -26,4 +26,8 @@ export class AssignmentService extends BaseService<Assignment> {
   getRepository(): Repository<Assignment> {
     return this.assignmentRepository;
   }
+
+  async countAllAssignments(): Promise<number> {
+    return await this.assignmentRepository.count();
+  }
 }

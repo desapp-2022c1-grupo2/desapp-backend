@@ -45,10 +45,4 @@ export abstract class BaseController<T extends BaseEntity> {
   update(@Param('id') id: any, @Body() dto: T) {
     return this.getService().update(id, dto);
   }
-
-  @Get('count')
-  @HttpCode(HttpStatus.OK)
-  async count(options?: FindManyOptions<T>): Promise<number> {
-    return await this.getService().count(options);
-  }
 }

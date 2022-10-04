@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { BaseController } from '../../commons';
 import { Student } from './entities';
@@ -12,5 +12,10 @@ export class StudentController extends BaseController<Student> {
 
   getService(): BaseService<Student> {
     return this.studentService;
+  }
+
+  @Get('count')
+  async countAll(): Promise<number> {
+    return this.studentService.countAll();
   }
 }
