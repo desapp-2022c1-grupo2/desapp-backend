@@ -1,18 +1,17 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
-import {Repository} from "typeorm";
-import {InjectRepository} from "@nestjs/typeorm";
-import {BaseService} from "../../commons";
-import {Course} from "./entities";
-import {FindOneOptions} from "typeorm/find-options/FindOneOptions";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { BaseService } from '../../commons';
+import { Course } from './entities';
+import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 
 @Injectable()
 export class CourseService extends BaseService<Course> {
-
   constructor(
     @InjectRepository(Course)
-    private readonly courseRepository: Repository<Course>
+    private readonly courseRepository: Repository<Course>,
   ) {
-    super()
+    super();
   }
 
   getRepository(): Repository<Course> {
@@ -20,13 +19,10 @@ export class CourseService extends BaseService<Course> {
   }
 
   async findOne(id: number): Promise<Course> {
-    let options: FindOneOptions<Course> = {where: {id}};
-    const data = await this.getRepository().findOne(options)
+    const options: FindOneOptions<Course> = { where: { id } };
+    const data = await this.getRepository().findOne(options);
 
-    if (!data) throw new NotFoundException('')
-    return data
+    if (!data) throw new NotFoundException('');
+    return data;
   }
-
-
 }
-

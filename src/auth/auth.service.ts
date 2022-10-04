@@ -1,14 +1,14 @@
-import {Injectable} from '@nestjs/common';
-import {JwtService} from '@nestjs/jwt';
-import {Admin, AdminService, Jtp, JtpService} from "../modules";
-import {compareHashPassword} from "../helpers/crypto";
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { Admin, AdminService, Jtp, JtpService } from '../modules';
+import { compareHashPassword } from '../helpers/crypto';
 
 @Injectable()
 export class AuthService {
   constructor(
     private adminService: AdminService,
     private jtpService: JtpService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
@@ -21,17 +21,17 @@ export class AuthService {
     if (jtp && jtp.password === pass) {
       const { password, ...result } = jtp;
       // Workaround to RBAC since we can't modify the database
-      let role = "Jtp";
-      return {...result, role};
+      const role = 'Jtp';
+      return { ...result, role };
     }
 
     // else Admin
     const admin = await this.adminService.findOneByEmail(username);
-    if (admin && await compareHashPassword(pass, admin.password)){
+    if (admin && (await compareHashPassword(pass, admin.password))) {
       const { password, ...result } = admin;
       // Workaround to RBAC since we can't modify the database
-      let role = "Admin";
-      return {...result, role};
+      const role = 'Admin';
+      return { ...result, role };
     }
     return null;
   }
