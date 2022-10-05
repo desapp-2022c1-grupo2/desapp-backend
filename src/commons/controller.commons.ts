@@ -1,4 +1,3 @@
-import { FindManyOptions } from 'typeorm';
 import { BaseService } from './service.commons';
 import {
   Body,
@@ -11,7 +10,6 @@ import {
   Post,
 } from '@nestjs/common';
 import { BaseEntity } from './entity';
-
 
 export abstract class BaseController<T extends BaseEntity> {
   abstract getService(): BaseService<T>;

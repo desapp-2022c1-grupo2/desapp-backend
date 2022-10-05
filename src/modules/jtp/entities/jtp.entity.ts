@@ -1,5 +1,6 @@
 import { BaseEntity } from '../../../commons';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Course} from "../../course";
 
 @Entity('jtp')
 export class Jtp extends BaseEntity {
@@ -20,4 +21,6 @@ export class Jtp extends BaseEntity {
 
   @Column({ name: 'materia_id' })
   courseId: number;
+
+
 }

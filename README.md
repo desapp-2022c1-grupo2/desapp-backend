@@ -68,7 +68,7 @@ Solamente los usuarios Admin y JTP pueden solicitar el login
 - POST /api/course/
 - DELETE /api/course/:id
 - PATCH /api/course/:id
-- GET /api/course/count
+
 ### Jtp
 - GET /api/jtp/
 - GET /api/jtp/:id
