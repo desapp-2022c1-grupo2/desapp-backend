@@ -33,13 +33,13 @@ export class AssignmentService extends BaseService<Assignment> {
     return await this.assignmentRepository.count();
   }
 
-  async AllAssignmentForJtp(jtp_id: number): Promise<Assignment>{
+  async AllAssignmentForJtp(jtp_id: number): Promise<Assignment[]>{
     const consulta = await this.assignmentRepository
         .createQueryBuilder()
         .select('assignment')
         .from(Assignment, 'assignment')
         .where('assignment.jtp_id = :jtp_id', { jtp_id })
-        .getOne()
+        .getMany()
     console.log(consulta)
     return consulta
   }

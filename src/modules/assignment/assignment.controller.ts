@@ -20,7 +20,7 @@ export class AssignmentController extends BaseController<Assignment> {
   }
 
   @Get('tp/:jtpId')
-  async AllAssignmentForJtp(@Param('jtpId')id: number): Promise<Assignment>{
+  async AllAssignmentForJtp(@Param('jtpId')id: number): Promise<Assignment[]>{
     return this.assignmentService.AllAssignmentForJtp(id)
   }
 }
