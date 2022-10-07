@@ -1,6 +1,5 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from '../../../commons';
-import {Jtp} from "../../jtp";
 
 @Entity('materia')
 export class Course extends BaseEntity {
@@ -18,5 +17,4 @@ export class Course extends BaseEntity {
 
   @Column({ name: 'es_cursada_anterior' })
   isPreviousCourse: number;
-
 }

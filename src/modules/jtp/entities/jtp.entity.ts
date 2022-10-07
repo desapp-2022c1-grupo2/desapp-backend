@@ -1,6 +1,5 @@
 import { BaseEntity } from '../../../commons';
-import { Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('jtp')
 export class Jtp extends BaseEntity {

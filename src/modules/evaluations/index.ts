@@ -1,1 +1,1 @@
-export * from './evaluations.module'
+export * from './evaluations.module';
