@@ -86,6 +86,13 @@ Solamente los usuarios Admin y JTP pueden solicitar el login
 ### Authentication
 - POST /api/auth/login
 
+### Evaluciónes
+- GET /api/evaluations/
+- GET /api/evaluations/:id
+- POST /api/evaluations/
+- DELETE /api/evaluations/:id
+- PATCH /api/evaluations/:id
+
 ### Assignement Submitted
 - GET /api/assignment_submitted/count
 ### Estadisticas
