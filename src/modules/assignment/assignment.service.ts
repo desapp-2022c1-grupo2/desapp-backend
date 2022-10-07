@@ -4,11 +4,13 @@ import { Assignment } from './entities';
 import { Repository } from 'typeorm';
 import { BaseService } from '../../commons';
 
+
 @Injectable()
 export class AssignmentService extends BaseService<Assignment> {
   constructor(
     @InjectRepository(Assignment)
     private readonly assignmentRepository: Repository<Assignment>,
+
   ) {
     super();
   }
@@ -29,5 +31,16 @@ export class AssignmentService extends BaseService<Assignment> {
 
   async countAllAssignments(): Promise<number> {
     return await this.assignmentRepository.count();
+  }
+
+  async AllAssignmentForJtp(jtp_id: number): Promise<Assignment>{
+    const consulta = await this.assignmentRepository
+        .createQueryBuilder()
+        .select('assignment')
+        .from(Assignment, 'assignment')
+        .where('assignment.jtp_id = :jtp_id', { jtp_id })
+        .getOne()
+    console.log(consulta)
+    return consulta
   }
 }

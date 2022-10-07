@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Assignment } from './entities';
 import { AssignmentService } from './assignment.service';
 
+
 @Module({
   imports: [TypeOrmModule.forFeature([Assignment])],
   controllers: [AssignmentController],
