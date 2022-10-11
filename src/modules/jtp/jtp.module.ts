@@ -7,6 +7,7 @@ import {Jtp} from "./entities";
 @Module({
   imports:[TypeOrmModule.forFeature([Jtp])],
   controllers: [JtpController],
-  providers: [JtpService]
+  providers: [JtpService],
+  exports: [JtpService]
 })
 export class JtpModule {}

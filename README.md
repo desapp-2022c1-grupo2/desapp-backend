@@ -23,7 +23,17 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## EndPoints
+## Authentication
+Esta REST API necesita autorización para los cada uno de los módulos, exceptuando el mismo login que es necesario.
+Para poder utilizarla,
+- La aplicación necesita un Bearer token como header
+- Se obtiene enviando un POST a `/api/auth/login` enviando como body lo siguiente:
+```json
+{"username": "email_admin_o_jtp", "password": "contraseña"}
+```
+Solamente los usuarios Admin y JTP pueden solicitar el login
+
+## Endpoints
 
 ### Prefijos 
 
@@ -33,6 +43,7 @@ $ npm run start:prod
 - /api/course
 - /api/jtp
 - /api/assignment
+- /api/auth/login
 
 ## Routers (map)
 
@@ -71,6 +82,8 @@ $ npm run start:prod
 - DELETE /api/assignment/:id
 - PATCH /api/assignment/:id
 - GET /api/assignment/count
+- ### Authentication
+- POST /api/auth/login
 
 
 

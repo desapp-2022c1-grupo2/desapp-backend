@@ -1,25 +1,16 @@
-import {Controller, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
+import {Controller} from '@nestjs/common';
 import {AssignmentService} from "./assignment.service";
-import {AssignmentEntity} from "./entities";
+import {Assignment} from "./entities";
+import {BaseController, BaseService} from "../../commons";
 
 @Controller('assignment')
-export class AssignmentController {
+export class AssignmentController extends BaseController<Assignment>{
 
-    constructor(
-        private readonly tpsService: AssignmentService
-    ) {}
-
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    async findAllTps(): Promise<AssignmentEntity[]>{
-        return await this.tpsService.findAllTps()
+    constructor( private readonly assignmentService: AssignmentService ) {
+        super();
     }
 
-    @Get('/:id')
-    @HttpCode(HttpStatus.OK)
-    async findByIdTp(
-        @Param('id') id: number
-    ): Promise <AssignmentEntity>{
-        return await this.tpsService.findByIdTp(id)
+    getService(): BaseService<Assignment> {
+        return this.assignmentService;
     }
 }
