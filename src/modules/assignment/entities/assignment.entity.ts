@@ -72,7 +72,11 @@ export class Assignment extends BaseEntity {
     eager: true,
   })
   @JoinColumn({ name: 'materia_id' })
+<<<<<<< Updated upstream
   public courseId: number;
+=======
+  public course: Course;
+>>>>>>> Stashed changes
 
   @Column({ name: 'proceso_individual', type: 'tinyint' })
   individualProcess: number;

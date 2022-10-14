@@ -45,6 +45,7 @@ Solamente los usuarios Admin y JTP pueden solicitar el login
 - /api/assignment
 - /api/auth/login
 
+
 ## Routers (map)
 
 ### Admin
@@ -60,32 +61,42 @@ Solamente los usuarios Admin y JTP pueden solicitar el login
 - POST /api/student/
 - DELETE /api/student/:id
 - PATCH /api/student/:id
-- GET /api/student/count
+- GET /api/student/count (obtiene la cantidad total de estudiantes)
 ### Course
 - GET /api/course/
 - GET /api/course/:id
 - POST /api/course/
 - DELETE /api/course/:id
-- PATCH /api/course/:id
-- GET /api/course/count
+- PATCH /api/course/:id 
+
 ### Jtp
 - GET /api/jtp/
 - GET /api/jtp/:id
 - POST /api/jtp/
 - DELETE /api/jtp/:id
 - PATCH /api/jtp/:id
-- GET /api/jtp/count
+- GET /api/jtp/count (no implementado)
 ### Assignment
 - GET /api/assignment/
 - GET /api/assignment/:id
 - POST /api/assignment/
 - DELETE /api/assignment/:id
 - PATCH /api/assignment/:id
-- GET /api/assignment/count
-- ### Authentication
+- GET /api/assignment/count (obtiene la cantidad total de Tps creados)
+### Authentication
 - POST /api/auth/login
 
+### Evaluciónes
+- GET /api/evaluations/
+- GET /api/evaluations/:id
+- POST /api/evaluations/
+- DELETE /api/evaluations/:id
+- PATCH /api/evaluations/:id
 
+### Assignement Submitted
+- GET /api/assignment_submitted/count
+### Estadisticas
+- GET /api/statistics/:jtpId (obtiene todos los Tps creados por JTP)
 
 ## Docker compose
 ``` bash
@@ -107,7 +118,7 @@ NODE_EVN=development
 
 - DATABASE_ROOT_PASSWORD
 
-- DATABASE_DATABASE
+- DATABASE_NAME
 
 - DATABASE_USER
 
