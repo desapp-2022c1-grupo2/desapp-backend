@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { JtpService } from './jtp.service';
-import { BaseController, BaseService } from '../../commons';
+import { BaseController } from '../../commons';
 import { Jtp } from './entities';
 
 @Controller('jtp')
@@ -9,7 +9,7 @@ export class JtpController extends BaseController<Jtp> {
     super();
   }
 
-  getService(): BaseService<Jtp> {
+  getService(): JtpService {
     return this.jtpService;
   }
 }

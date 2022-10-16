@@ -41,7 +41,7 @@ export class Evaluation extends BaseEntity {
   public jtp: Jtp;
 
   @Column({ name: 'variable_1', type: 'int' })
-  variables1: number;
+  variable1: number;
 
   @Column({ name: 'variable_2', type: 'int' })
   variable2: number;

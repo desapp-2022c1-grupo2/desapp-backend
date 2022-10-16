@@ -20,4 +20,38 @@ export class EvaluationsService extends BaseService<Evaluation> {
   getRepository(): Repository<Evaluation> {
     return this.evaluationsRepository;
   }
+
+  async findEvaluationsForJtp(id: number): Promise<Evaluation[]> {
+    return this.getRepository().find({
+      where: {
+        jtp: {
+          id: id,
+        },
+      },
+    });
+  }
+
+  async findEvaluationsForStudent(id: number): Promise<Evaluation[]> {
+    return this.getRepository().find({
+      where: {
+        student: {
+          id: id,
+        },
+      },
+    });
+  }
+
+  async findEvaluationsForCourse(id: number): Promise<Evaluation[]> {
+    return this.getRepository().find({
+      where: {
+        assignment_submitted: {
+          assignment: {
+            course: {
+              id: id,
+            },
+          },
+        },
+      },
+    });
+  }
 }
