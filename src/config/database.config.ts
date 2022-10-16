@@ -24,7 +24,7 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
         /**
          * Activar solo en desarrollo
          */
-        synchronize: true,
+        synchronize: false,
         logging: true,
         logger: 'file',
     }
