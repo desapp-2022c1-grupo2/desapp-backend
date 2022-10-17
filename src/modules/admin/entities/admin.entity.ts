@@ -1,10 +1,9 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-import {BaseEntity} from "../../../commons";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity } from '../../../commons';
 
 @Entity('admin')
 export class Admin extends BaseEntity {
-
-  @PrimaryGeneratedColumn({type: "int"})
+  @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
   @Column()
@@ -18,5 +17,4 @@ export class Admin extends BaseEntity {
 
   @Column({ unique: true })
   email: string;
-
 }

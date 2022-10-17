@@ -1,11 +1,9 @@
-import { IsString} from "class-validator";
+import { IsString } from 'class-validator';
 
 export class CreatedAdminDto {
+  @IsString()
+  readonly name: string;
 
-    @IsString()
-    readonly name: string;
-
-    @IsString()
-    readonly lastName: string;
-
+  @IsString()
+  readonly lastName: string;
 }
