@@ -51,4 +51,6 @@ export class AssignmentSubmitted extends BaseEntity {
 
   @Column({ name: 'publico_estudiante' })
   studentPublic: number;
+
+  membersAsStudents: Student[];
 }
