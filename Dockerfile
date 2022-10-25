@@ -1,26 +1,13 @@
 FROM node:12.22.9-alpine AS builder
 
-ENV NODE_ENV=build
+WORKDIR /app
 
-WORKDIR /home/node
+COPY package.json ./
 
-COPY . /home/node
+RUN npm install
 
-RUN ci \
-    && npm run build \
+COPY . .
 
+RUN npm run build
 
-# --- \
-FROM node:12.22.9-alpine
-
-ENV NODE_ENV=development
-
-USER node
-
-WORKDIR /home/node
-
-COPY --from=builder /home/node/package.json /home/node/package*.json /home/node/
-COPY --from=builder /home/node/node_modules /home/node/node_modules
-COPY --from=builder /home/node/dist /home/node/dist
-
-CMD ["node", "dist/main.js"]
+CMD ["npm", "run", "start:dev"]
