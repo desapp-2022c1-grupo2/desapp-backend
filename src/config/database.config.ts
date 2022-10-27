@@ -20,13 +20,15 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
     migrationsTableName: 'migrations_typeorm',
 
-    /**
-     * Activar solo en desarrollo
-     */
-    synchronize: false,
-    logging: true,
-    logger: 'file',
-  };
+
+        /**
+         * Activar solo en desarrollo
+         */
+        synchronize: false,
+        logging: true,
+        logger: 'file',
+    }
+
 }
 
 export default registerAs('database', () => ({
