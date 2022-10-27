@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import {Body, Controller, HttpCode, HttpStatus, Param, Post} from '@nestjs/common';
 import { JtpService } from './jtp.service';
 import { BaseController } from '../../commons';
 import { Jtp } from './entities';
@@ -11,5 +11,11 @@ export class JtpController extends BaseController<Jtp> {
 
   getService(): JtpService {
     return this.jtpService;
+  }
+
+  @Post(':id/resetPassword')
+  @HttpCode(HttpStatus.OK)
+  async resetPassword(@Param('id') id: any, @Body() dto: Jtp) {
+    return await this.getService().resetPassword(id);
   }
 }

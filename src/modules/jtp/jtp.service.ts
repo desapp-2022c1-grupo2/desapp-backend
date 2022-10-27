@@ -33,4 +33,9 @@ export class JtpService extends BaseService<Jtp> {
     if (!entity) return null;
     return entity;
   }
+
+  async resetPassword(id: any) {
+    // TODO: Change to env variable
+    return await this.getRepository().update(id, {password: "changeme"});
+  }
 }
