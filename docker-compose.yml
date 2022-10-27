@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  nest-api:
+  nestjs-api:
       image: docker-nestjs-aws
       restart: always
       container_name: api-nestjs-aws
