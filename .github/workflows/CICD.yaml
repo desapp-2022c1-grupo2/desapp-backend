@@ -25,7 +25,7 @@ jobs:
           - name: Set up QEMU
             #https://github.com/doclerLabs/qemu-action
             id: set_up_qemu
-            uses: dockerLabs/qemu-action@master
+            uses: docker/setup-qemu-action@master
             with:
               platforms: all
 
