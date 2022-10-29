@@ -22,12 +22,13 @@ jobs:
                 return repo.data
 
             # Inicio de QEMU para emular procesos basados en traducción dinámica de binarios
-          - name: Set upQEMU
+          - name: Set up QEMU
             #https://github.com/doclerLabs/qemu-action
             id: set_up_qemu
-            uses: doclerLabs/qemu-action@master
+            uses: dockerLabs/qemu-action@master
             with:
               platforms: all
+
           - name: Set up Docker Buildx
             # https://github.com/docker/setup-buildx-action
             id: buildx
