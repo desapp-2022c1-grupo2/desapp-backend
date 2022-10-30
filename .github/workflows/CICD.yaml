@@ -53,7 +53,7 @@ jobs:
              context: .
              platforms: linux/amd64
              push: true
-             tags: ${{ secrets.DOCKER_USERNAME }}/disenio-industrial:latest
+             tags: adrianyaniri/disenio-industrial:latest
 
           - name: Sync Readme Github - Dockerhub
             # https://github.com/marketplace/actions/dockerhub-readme
@@ -61,5 +61,5 @@ jobs:
             with:
               username: ${{ secrets.DOCKERHUB_USERNAME }}
               password: ${{ secrets.DOCKERHUB_PASS }}
-              repository: docker-nestjs-aws
+              repository: disenio-industrial
               readme: "./README.md"
