@@ -51,7 +51,7 @@ jobs:
             uses: docker/build-push-action@v3
             with:
               context: .
-              file: ./Dockerfile
+              file: Dockerfile
               platforms: linux/amd64
               push: true
               tags: ${{ secrets.DOCKER_USERNAME }} docker-nestjs-aws:1.0.0
