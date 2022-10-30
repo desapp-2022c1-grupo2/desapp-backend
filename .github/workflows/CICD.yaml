@@ -53,7 +53,7 @@ jobs:
              context: .
              platforms: linux/amd64
              push: true
-             tags: ${{ secrets.DOCKER_USERNAME }} docker-nestjs-aws:1.0.0
+             tags: ${{ secrets.DOCKER_USERNAME }} /disenio-industrial:latest
 
           - name: Sync Readme Github - Dockerhub
             # https://github.com/marketplace/actions/dockerhub-readme
