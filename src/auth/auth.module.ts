@@ -12,13 +12,10 @@ import { AdminModule, JtpModule } from '../modules';
     AdminModule,
     JtpModule,
     PassportModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        secret: configService.jwtSecret,
-      }),
-      inject: [ConfigService],
-    }),,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '7d' },
+    }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],

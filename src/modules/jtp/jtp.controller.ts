@@ -18,7 +18,7 @@ export class JtpController extends BaseController<Jtp> {
   @Post(':id/resetPassword')
   @HttpCode(HttpStatus.OK)
   async resetPassword(@Param('id') id: any, @Body() dto: Jtp) {
-    // await this.sendMail(dto.email);
+    await this.sendMail('tomas.toloza@estudiantes.unahur.edu.ar');
     return await this.getService().resetPassword(id);
   }
 
@@ -26,7 +26,7 @@ export class JtpController extends BaseController<Jtp> {
   private async sendMail(receiverEmail) {
     sgMail.setApiKey("")
     const msg = {
-      to: 'tomas.toloza@estudiantes.unahur.edu.ar',
+      to: receiverEmail,
       from: 'tomas.toloza@estudiantes.unahur.edu.ar',
       subject: 'Reestablecimiento de contraseña | Diseño industrial UNAHUR',
       text: `reset para ${receiverEmail}`,
