@@ -61,5 +61,5 @@ jobs:
             with:
               username: ${{ secrets.DOCKERHUB_USERNAME }}
               password: ${{ secrets.DOCKERHUB_PASS }}
-              repository: disenio-industrial
+              repository: adrianyanri/disenio-industrial
               readme: "./README.md"
