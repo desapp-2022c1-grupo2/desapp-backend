@@ -12,7 +12,7 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     database: process.env.DATABASE_NAME,
     entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
     autoLoadEntities: true,
-
+    
     /**
      * Implementacion de las migraciones
      */
@@ -22,8 +22,8 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
 
 
         /**
-         * Activar solo en desarrollo
-         */
+     * Activar solo en desarrollo
+     */
         synchronize: false,
         logging: true,
         logger: 'file',

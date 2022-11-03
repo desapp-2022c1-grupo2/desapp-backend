@@ -71,10 +71,10 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env*
+.env.development
 
 # -.- = +
-!.env.example
+!.env.development
 
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -116,3 +116,4 @@ temp/
 .mysql-data
 
 .DS_Store
+ .env.development
