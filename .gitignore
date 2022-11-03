@@ -116,3 +116,4 @@ temp/
 .mysql-data
 
 .DS_Store
+ .env.development
