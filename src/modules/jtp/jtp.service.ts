@@ -5,12 +5,14 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 import { replaceSpecialCharactersForEachField } from '../../helpers/stringUtils';
+import {MailService} from "../mail";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
   constructor(
     @InjectRepository(Jtp)
     private readonly jtpRepository: Repository<Jtp>,
+    private readonly mailService: MailService
   ) {
     super();
   }
@@ -34,8 +36,15 @@ export class JtpService extends BaseService<Jtp> {
     return entity;
   }
 
-  async resetPassword(id: any) {
-    // TODO: Change to env variable
-    return await this.getRepository().update(id, {password: "changeme"});
+  async resetPassword(id: any, password: string) {
+    return await this.getRepository().update(id, {password: password});
+  }
+
+  async save(entity: Jtp): Promise<Jtp> {
+    // TODO: CHANGE PASSWORD and SEND EMAIL
+    entity.password = "changeme";
+    console.log("Changed password for JTP with email" + entity.email)
+    const data = this.getRepository().create(entity);
+    return await this.getRepository().save(data);
   }
 }

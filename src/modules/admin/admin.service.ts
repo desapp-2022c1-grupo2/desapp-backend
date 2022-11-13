@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from '../../commons';
 import { Admin } from './entities';
 import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
-import { generateHashPassword } from '../../helpers/crypto';
+import { generateHash } from '../../helpers/crypto';
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
@@ -34,8 +34,12 @@ export class AdminService extends BaseService<Admin> {
   }
 
   async save(entity: Admin): Promise<Admin> {
-    entity.password = await generateHashPassword(entity.password);
+    entity.password = await generateHash(entity.password);
     const data = this.getRepository().create(entity);
-    return await this.getRepository().save(data);
+    return this.getRepository().save(data);
+  }
+
+  async resetPassword(id: any, password: string) {
+    return this.getRepository().update(id, {password: await generateHash(password)});
   }
 }

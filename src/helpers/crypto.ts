@@ -2,18 +2,18 @@ import * as bcrypt from 'bcrypt';
 
 const saltRounds = 10;
 
-export const generateHashPassword = async (password: string) => {
-  if (password) {
+export const generateHash = async (string: string) => {
+  if (string) {
     // generate salt to hash password
     const salt = await bcrypt.genSalt(saltRounds);
     // now we set user password to hashed password
-    return await bcrypt.hash(password, salt);
+    return await bcrypt.hash(string, salt);
   }
 };
 
-export const compareHashPassword = async (
-  reqPassword: string,
-  userPassword: string,
+export const compareHash = async (
+  reqString: string,
+  userString: string,
 ) => {
-  return bcrypt.compare(reqPassword, userPassword);
+  return await bcrypt.compare(reqString, userString);
 };
