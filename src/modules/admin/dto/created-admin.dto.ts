@@ -1,4 +1,11 @@
-import { IsDefined, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import {
+  IsDefined,
+  IsEmail,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class CreatedAdminDto {
   @IsDefined()
@@ -12,6 +19,12 @@ export class CreatedAdminDto {
   @MaxLength(20)
   @IsString()
   readonly lastName: string;
+
+  @IsDefined()
+  @MinLength(3)
+  @MaxLength(20)
+  @IsEmail()
+  readonly email: string;
 
   @IsDefined()
   @MinLength(8)

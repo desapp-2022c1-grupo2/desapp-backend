@@ -39,4 +39,11 @@ export class AdminService extends BaseService<Admin> {
     const data = this.getRepository().create(entity);
     return await this.getRepository().save(data);
   }
+
+  async update(id: number, entity: CreatedAdminDto): Promise<Admin> {
+    entity.password = await generateHashPassword(entity.password);
+    const data = await this.findOne(id);
+    const updatedData = Object.assign(data, entity);
+    return await this.getRepository().save(updatedData);
+  }
 }

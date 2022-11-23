@@ -1,6 +1,7 @@
 import { FindManyOptions, Repository } from 'typeorm';
 import { BaseEntity } from './entity';
 import { replaceSpecialCharactersForEachField } from '../helpers/stringUtils';
+import { UpdateResult } from 'typeorm/browser';
 
 export abstract class BaseService<T extends BaseEntity> {
   abstract getRepository(): Repository<T>;
@@ -24,8 +25,10 @@ export abstract class BaseService<T extends BaseEntity> {
     return this.getRepository().delete(id);
   }
 
-  async update(id: any, dto: any) {
-    return await this.getRepository().update(id, dto);
+  async update(id: any, dto: any): Promise<T> {
+    const data = await this.findOne(id);
+    const updatedData = Object.assign(data, dto);
+    return await this.getRepository().save(updatedData);
   }
 
   count(options?: FindManyOptions<T>): Promise<number> {
