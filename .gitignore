@@ -72,6 +72,7 @@ typings/
 
 # dotenv environment variables file
 .env.development
+.env.*
 
 # -.- = +
 !.env.development
@@ -116,4 +117,3 @@ temp/
 .mysql-data
 
 .DS_Store
- .env.development
