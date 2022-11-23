@@ -17,7 +17,7 @@ export class CreatedAdminDto {
   @MinLength(8)
   @MaxLength(20)
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
-      message: "Password too weak",
-    })
+    message: 'Password too weak',
+  })
   password: string;
 }

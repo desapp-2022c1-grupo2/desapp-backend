@@ -5,7 +5,7 @@ import { BaseService } from '../../commons';
 import { Admin } from './entities';
 import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 import { generateHashPassword } from '../../helpers/crypto';
-import { CreatedAdminDto } from "./dto";
+import { CreatedAdminDto } from './dto';
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
