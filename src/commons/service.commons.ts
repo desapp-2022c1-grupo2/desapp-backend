@@ -1,7 +1,6 @@
 import { FindManyOptions, Repository } from 'typeorm';
 import { BaseEntity } from './entity';
 import { replaceSpecialCharactersForEachField } from '../helpers/stringUtils';
-import { UpdateResult } from 'typeorm/browser';
 
 export abstract class BaseService<T extends BaseEntity> {
   abstract getRepository(): Repository<T>;

@@ -19,7 +19,7 @@ import { AppController } from './app.controller';
 import { JwtAuthGuard } from './auth';
 import { APP_GUARD } from '@nestjs/core';
 import { AssignmentSubmittedModule } from './modules/assignment_submitted/assignment_submitted.module';
-import { EvaluationsModule } from "./modules";
+import { EvaluationsModule } from './modules';
 
 @Module({
   imports: [

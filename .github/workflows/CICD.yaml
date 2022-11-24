@@ -2,7 +2,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - "deploy"
+      - ["main","deploy"]
 jobs:
     build:
         runs-on: ubuntu-latest
