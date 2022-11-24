@@ -5,4 +5,4 @@ services:
     restart: always
     container_name: diseno-industrial
     ports:
-      - "5001:5001"
+      - "5000:5000"
