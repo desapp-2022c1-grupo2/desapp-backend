@@ -1,14 +1,8 @@
 version: '3.7'
 services:
-  postgres:
-    image: postgres:10.5
+  aws-disenio:
+    image: adrianyaniri/disenio-industrial:latest
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    logging:
-      options:
-        max-size: 10m
-        max-file: "3"
+    container_name: diseno-industrial
     ports:
-      - '5438:5432'
+      - "5001:5001"
