@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { BaseEntity } from '../../../commons';
+import { Course } from '../../course';
 
 @Entity('estudiante')
 export class Student extends BaseEntity {
@@ -27,14 +34,20 @@ export class Student extends BaseEntity {
   @Column({ name: 'fecha_nacimiento', type: 'date' })
   birthDate: Date;
 
-  @Column({ type: 'int' })
-  materia_cursada: number;
+  @ManyToOne(() => Course, (course) => course, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'materia_cursada' })
+  materia_cursada: Course;
 
   @Column()
   fecha_cambio_materia_cursada: Date;
 
-  @Column()
-  materia_padre_cursada: number;
+  @ManyToOne(() => Course, (course) => course, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'materia_padre_cursada' })
+  materia_padre_cursada: Course;
 
   @Column()
   comision: number;

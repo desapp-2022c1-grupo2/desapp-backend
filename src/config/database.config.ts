@@ -20,6 +20,7 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
     migrationsTableName: 'migrations_typeorm',
 
+<<<<<<< HEAD
     /**
      * Activar solo en desarrollo
      */
@@ -27,6 +28,17 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     logging: true,
     logger: 'file',
   };
+=======
+
+        /**
+     * Activar solo en desarrollo
+     */
+        synchronize: false,
+        logging: true,
+        logger: 'file',
+    }
+
+>>>>>>> 82b6e76c5accc5331927903bd0d459fa80e2a495
 }
 
 export default registerAs('database', () => ({
