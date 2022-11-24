@@ -17,4 +17,5 @@ export class Admin extends BaseEntity {
 
   @Column({ unique: true, type: 'varchar', length: 255, name: 'email' })
   email: string;
+
 }
