@@ -1,7 +1,7 @@
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
-import { Module } from '@nestjs/common';
+import {forwardRef, Module} from '@nestjs/common';
 
 import {
   AdminModule,

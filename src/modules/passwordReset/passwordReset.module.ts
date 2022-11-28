@@ -1,8 +1,8 @@
 import {Module} from '@nestjs/common';
 import {PasswordResetService} from './passwordReset.service';
 import {PasswordResetController} from './passwordReset.controller';
-import {Jtp, JtpModule} from "../jtp";
-import {Admin, AdminModule} from "../admin";
+import {JtpModule} from "../jtp";
+import {AdminModule} from "../admin";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {PasswordReset} from "./entities";
 import {MailModule} from "../mail";

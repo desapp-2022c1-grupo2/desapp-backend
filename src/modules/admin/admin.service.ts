@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import {Repository, UpdateResult} from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from '../../commons';
 import { Admin } from './entities';
@@ -40,6 +40,7 @@ export class AdminService extends BaseService<Admin> {
   }
 
   async resetPassword(id: any, password: string) {
-    return this.getRepository().update(id, {password: await generateHash(password)});
+    let updateResult: UpdateResult = await this.getRepository().update(id, {password: await generateHash(password)});
+    console.log(`Resetted password for ADMIN with id ${id} with result = ${updateResult}`);
   }
 }

@@ -1,15 +1,5 @@
-import {Test, TestingModule} from '@nestjs/testing';
 import {PasswordResetService} from "./passwordReset.service";
-import {TypeOrmModule, TypeOrmModuleOptions} from "@nestjs/typeorm";
-import {PasswordReset} from "./entities";
-import {Jtp} from "../jtp";
-import {Admin} from "../admin";
-import {MailModule} from "../mail";
-import {ConfigModule, ConfigService} from "@nestjs/config";
-import databaseConfig from "../../config/database.config";
-import * as Joi from "@hapi/joi";
-import {TYPEORM_CONFIG} from "../../config";
-import {Timestamp} from "typeorm";
+import {CryptoJS} from "crypto-js";
 
 describe('PasswordResetService', () => {
 
@@ -22,9 +12,21 @@ describe('PasswordResetService', () => {
         const maxTimeBeforeExpiredInMinutes: number = 5;
         const maxExpiredDate: Date = new Date(createdAtDate);
         maxExpiredDate.setMinutes(createdAtDate.getMinutes() + maxTimeBeforeExpiredInMinutes);
-        expect(maxExpiredDate>=validDate).toBeTruthy()
-        expect(maxExpiredDate>=anotherValid).toBeTruthy()
-        expect(maxExpiredDate>=invalidDate).toBeFalsy()
+        expect(maxExpiredDate >= validDate).toBeTruthy()
+        expect(maxExpiredDate >= anotherValid).toBeTruthy()
+        expect(maxExpiredDate >= invalidDate).toBeFalsy()
 
+    });
+
+    it('should decode', () => {
+        const b64 = "SGVsbG8sIFdvcmxkIQ==";
+        const str = 'Hello, World!'
+
+        const decode = (str: string): string => Buffer.from(str, 'base64').toString('binary');
+        const encode = (str: string): string => Buffer.from(str, 'binary').toString('base64');
+        expect(encode(str)).toEqual(b64);
+        console.log(str)
+        console.log(b64)
+        console.log(encode(str).toString())
     });
 });

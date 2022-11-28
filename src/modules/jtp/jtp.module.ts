@@ -3,10 +3,9 @@ import { JtpService } from './jtp.service';
 import { JtpController } from './jtp.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Jtp } from './entities';
-import {MailModule, MailService} from "../mail";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Jtp]), MailModule],
+  imports: [TypeOrmModule.forFeature([Jtp])],
   controllers: [JtpController],
   providers: [JtpService],
   exports: [JtpService],

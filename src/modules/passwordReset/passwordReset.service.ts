@@ -42,8 +42,7 @@ export class PasswordResetService {
             console.log(`Resetting password for JTP with id ${passwordReset.entityId}`)
             await this.jtpService.resetPassword(passwordReset.entityId, password)
         } else {
-            console.log(`Resetting password for Admin with id ${passwordReset.entityId}`)
-
+            console.log(`Resetting and hashing password for Admin with id ${passwordReset.entityId}`)
             let hashPassword = await generateHash(password);
             await this.adminService.resetPassword(passwordReset.entityId, hashPassword);
         }
@@ -70,11 +69,11 @@ export class PasswordResetService {
         return maxExpiredDate >= currentTimestamp;
     }
 
-    async resetPasswordById(entityId: any, receiverEmail: string, role: string) {
+    async resetPasswordById(entityId: any, receiverEmail: string, role: "JTP" | "ADMIN") {
         // creates a new reset with a salty id, the entity id, its type, and a timestamp
         const resetPasswordUrl: string = await this.createNewReset(entityId, role);
         // sends the user an email with the reset details (url + hash id)
-        await this.mailService.sendMail(passwordResetMessage(receiverEmail, resetPasswordUrl))
+        await this.mailService.sendMail(passwordResetMessage(receiverEmail, resetPasswordUrl));
         return HttpStatus.OK
     }
 
@@ -88,9 +87,14 @@ export class PasswordResetService {
         const createdAt: number = Date.now();
         const hashId: string = createHash('sha512').update(String(data.id).concat(String(createdAt))).digest('hex');
         data.id = hashId;
-        //TODO: REPLACE WITH ENV VARIABLE
-        console.log(`Saving new reset with data = ${data}`)
-        await this.passwordResetRepository.save(data)
+
+        let passwordResetLog = `PasswordReset (id: ${data.id}, entityRole: ${data.entityRole}, entityId: ${data.entityId}, createdAt: ${data.createdAt})`;
+        console.log(`Saving new reset with data = ${passwordResetLog}`)
+        const passwordReset: PasswordReset = await this.passwordResetRepository.save(data);
+        passwordResetLog = `PasswordReset (id: ${passwordReset.id}, entityRole: ${passwordReset.entityRole}, entityId: ${passwordReset.entityId}, createdAt: ${passwordReset.createdAt})`;
+        console.log(`Saved new reset with data = ${passwordResetLog}`)
+
+        // TODO: REPLACE WITH ENV VARIABLE
         let backendUrl = `http://localhost:3002`;
         return `${backendUrl}/passwordReset/${hashId}`;
     }
