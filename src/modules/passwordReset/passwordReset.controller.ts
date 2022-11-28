@@ -14,13 +14,10 @@ export class PasswordResetController {
         return this.passwordResetService.validateResetById(resetId, password);
     }
 
-    @Public()
     @Post('')
     async resetPasswordById(@Body() body: { mail: string, role: "JTP" | "ADMIN", id: string }) {
-        const receiverEmail = body.mail;
-        const role = body.role
-        const entityId = body.id
-        return this.passwordResetService.resetPasswordById(entityId, receiverEmail, role)
+        const {mail, role, id} = body
+        return this.passwordResetService.resetPasswordById(id, mail, role)
     }
 
 }
