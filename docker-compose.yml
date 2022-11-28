@@ -4,5 +4,12 @@ services:
     image: adrianyaniri/disenio-industrial:latest
     restart: always
     container_name: diseno-industrial
+    environment:
+      DATABASE_HOST : ${DATABASE_HOST}
+      DATABASE_NAME : ${DATABASE_NAME}
+      DATABASE_USER : ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+      NODE_ENV: ${NODE_ENV}
     ports:
-      - "5000:5000"
+      - "5001:5000"

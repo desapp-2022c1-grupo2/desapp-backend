@@ -6,10 +6,10 @@ export class Admin extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column({ type: 'varchar', length: 255, name: 'nombre' })
+  @Column({ type: 'varchar', length: 255, name: 'name' })
   name: string;
 
-  @Column({type: 'varchar', length: 255, name: 'apellido'})
+  @Column({type: 'varchar', length: 255, name: 'lastName' })
   lastName: string;
 
   @Column({ type: 'varchar', length: 255 })
@@ -17,6 +17,5 @@ export class Admin extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
-  
-  
+
 }
