@@ -10,6 +10,6 @@ services:
       DATABASE_USER : ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_PORT: ${DATABASE_PORT}
-      NODE_ENV: ${NODE_ENV}
+
     ports:
-      - "5001:5000"
+      - "5002:3000"
