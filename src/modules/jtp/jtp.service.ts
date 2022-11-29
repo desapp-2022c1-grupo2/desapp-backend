@@ -5,12 +5,16 @@ import {Repository, UpdateResult} from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 import { replaceSpecialCharactersForEachField } from '../../helpers/stringUtils';
+import {PasswordReset} from "../passwordReset/entities";
+import {generateHash} from "../../helpers/crypto";
+import {PasswordResetService} from "../passwordReset/passwordReset.service";
 
 @Injectable()
 export class JtpService extends BaseService<Jtp> {
   constructor(
     @InjectRepository(Jtp)
     private readonly jtpRepository: Repository<Jtp>,
+    private readonly passwordResetService: PasswordResetService,
   ) {
     super();
   }
@@ -41,7 +45,19 @@ export class JtpService extends BaseService<Jtp> {
 
   async save(entity: Jtp): Promise<Jtp> {
     const data = this.getRepository().create(entity);
-    console.log("Created JTP with email" + entity.email);
-    return await this.getRepository().save(data);
+    let jtp = await this.getRepository().save(data);
+    console.log("Created admin with", {jtp})
+    await this.passwordResetService.resetPasswordById(jtp.id, jtp.email, "JTP")
+    console.log("Sent reset token to email" + jtp.email);
+    return jtp;
   }
+
+  async validateAndResetPassword(token: string, password: string){
+    const passwordReset: PasswordReset = await this.passwordResetService.isTokenValid(token);
+    const {entityId} = passwordReset;
+    let updateResult: UpdateResult = await this.getRepository().update(entityId, {password: await generateHash(password)});
+    await this.passwordResetService.deletePasswordReset(passwordReset);
+    return updateResult;
+  }
+
 }

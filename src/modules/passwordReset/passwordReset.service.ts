@@ -15,42 +15,26 @@ export class PasswordResetService {
     constructor(
         @InjectRepository(PasswordReset)
         private readonly passwordResetRepository: Repository<PasswordReset>,
-        private readonly jtpService: JtpService,
-        private readonly adminService: AdminService,
         private readonly mailService: MailService,
     ) {
 
     }
 
-    async validateResetById(resetId: string, password: string) {
+    async isTokenValid(resetId: string) {
         // find generated id
-        console.log(`Reset password by id with id ${resetId} and password ${password}`);
+        console.log(`Reset password by id with id ${resetId}`);
         const passwordReset: PasswordReset = await this.passwordResetRepository.findOneBy({id: resetId});
         if (!passwordReset) {
             throw new NotFoundException(`Invalid reset token`);
         }
-        // Verify if token is expired (5min)
-        // if (this.isExpired(passwordReset.createdAt)) {
-        //     // Delete reset
-        //     const deleteResult: DeleteResult = await this.passwordResetRepository.delete(passwordReset);
-        //     console.log(`Deleted ${deleteResult.affected} rows`)
-        //     throw new UnauthorizedException(`Reset token expired`);
-        // }
-
-        // Change password with new password
-        if (passwordReset.entityRole == "JTP") {
-            console.log(`Resetting password for JTP with id ${passwordReset.entityId}`)
-            await this.jtpService.resetPassword(passwordReset.entityId, password)
-        } else {
-            console.log(`Resetting and hashing password for Admin with id ${passwordReset.entityId}`)
-            let hashPassword = await generateHash(password);
-            await this.adminService.resetPassword(passwordReset.entityId, hashPassword);
-        }
-
         // Delete reset
+        return passwordReset;
+    }
+
+    async deletePasswordReset(passwordReset: PasswordReset){
         const deleteResult: DeleteResult = await this.passwordResetRepository.delete(passwordReset);
         console.log(`Deleted ${deleteResult.affected} rows`)
-        return HttpStatus.OK;
+        return deleteResult;
     }
 
     private async isExpired(createdAt: Date) {
@@ -78,7 +62,7 @@ export class PasswordResetService {
     }
 
 
-    private async createNewReset(entityId: any, role: string) {
+    private async createNewReset(entityId: any, role: "JTP" | "ADMIN") {
         if (!(entityId && role)) {
             throw new NotFoundException(`entity_id or entity_role must not be null`)
         }
@@ -96,6 +80,6 @@ export class PasswordResetService {
 
         // TODO: REPLACE WITH ENV VARIABLE
         let backendUrl = `http://localhost:3002`;
-        return `${backendUrl}/passwordReset/${hashId}`;
+        return `${backendUrl}/${role.toLowerCase()}/validateReset/${hashId}`;
     }
 }

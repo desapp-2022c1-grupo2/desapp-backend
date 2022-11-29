@@ -5,4 +5,3 @@ export * from './local.strategy';
 export * from './constants';
 export * from './jwt.strategy';
 export * from './jwt-auth.guard';
-export * from './public.metadata';
