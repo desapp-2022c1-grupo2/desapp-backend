@@ -1,7 +1,7 @@
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
-import { Module } from '@nestjs/common';
+import {Module} from '@nestjs/common';
 
 import {
   AdminModule,
@@ -19,7 +19,9 @@ import { AppController } from './app.controller';
 import { JwtAuthGuard } from './auth';
 import { APP_GUARD } from '@nestjs/core';
 import { AssignmentSubmittedModule } from './modules/assignment_submitted/assignment_submitted.module';
-import { EvaluationsModule } from './modules/evaluations/evaluations.module';
+import { EvaluationsModule } from './modules';
+import { MailModule } from './modules/mail';
+import { PasswordResetModule } from './modules/passwordReset/passwordReset.module';
 
 @Module({
   imports: [
@@ -46,6 +48,8 @@ import { EvaluationsModule } from './modules/evaluations/evaluations.module';
     AuthModule,
     AssignmentSubmittedModule,
     EvaluationsModule,
+    MailModule,
+    PasswordResetModule,
   ],
   controllers: [AppController],
   providers: [

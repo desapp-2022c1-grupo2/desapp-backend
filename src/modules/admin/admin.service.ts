@@ -1,17 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from '../../commons';
-import { Admin } from './entities';
-import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
-import { generateHashPassword } from '../../helpers/crypto';
-import { CreatedAdminDto } from "./dto";
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {Repository, UpdateResult} from 'typeorm';
+import {InjectRepository} from '@nestjs/typeorm';
+import {BaseService} from '../../commons';
+import {Admin} from './entities';
+import {FindOneOptions} from 'typeorm/find-options/FindOneOptions';
+import {generateHash} from '../../helpers/crypto';
+import {PasswordResetService} from "../passwordReset/passwordReset.service";
+import {PasswordReset} from "../passwordReset/entities";
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
   constructor(
     @InjectRepository(Admin)
     private readonly adminRepository: Repository<Admin>,
+    private readonly passwordResetService: PasswordResetService,
   ) {
     super();
   }
@@ -35,9 +37,21 @@ export class AdminService extends BaseService<Admin> {
   }
 
   async save(entity: Admin): Promise<Admin> {
-    entity.password = await generateHashPassword(entity.password);
+    entity.password = await generateHash(entity.password);
     const data = this.getRepository().create(entity);
-    return await this.getRepository().save(data);
+    let admin = await this.getRepository().save(data);
+    console.log("Creating admin with", {admin})
+    await this.passwordResetService.resetPasswordById(admin.id, admin.email, "ADMIN")
+    console.log("Sent reset token to email", admin.email);
+    return admin;
+  }
+
+  async validateAndResetPassword(token: string, password: string){
+    const passwordReset: PasswordReset = await this.passwordResetService.isTokenValid(token);
+    const {entityId} = passwordReset;
+    let updateResult: UpdateResult = await this.getRepository().update(entityId, {password: await generateHash(password)});
+    await this.passwordResetService.deletePasswordReset(passwordReset);
+    return updateResult;
   }
   async update(id: number, entity: CreatedAdminDto): Promise<Admin> {
     entity.password = await generateHashPassword(entity.password);
