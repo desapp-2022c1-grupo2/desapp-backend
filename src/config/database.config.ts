@@ -12,7 +12,7 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     database: process.env.DATABASE_NAME,
     entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
     autoLoadEntities: true,
-
+    
     /**
      * Implementacion de las migraciones
      */
@@ -20,13 +20,14 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
     migrationsTableName: 'migrations_typeorm',
 
-    /**
+
+        /**
      * Activar solo en desarrollo
      */
-    synchronize: false,
-    logging: true,
-    logger: 'file',
-  };
+        synchronize: false,
+        logging: true,
+        logger: 'file',
+    }
 }
 
 export default registerAs('database', () => ({
