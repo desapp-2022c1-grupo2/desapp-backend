@@ -55,7 +55,7 @@ export class JtpService extends BaseService<Jtp> {
   async validateAndResetPassword(token: string, password: string){
     const passwordReset: PasswordReset = await this.passwordResetService.isTokenValid(token);
     const {entityId} = passwordReset;
-    let updateResult: UpdateResult = await this.getRepository().update(entityId, {password: await generateHash(password)});
+    let updateResult: UpdateResult = await this.getRepository().update(entityId, {password});
     await this.passwordResetService.deletePasswordReset(passwordReset);
     return updateResult;
   }
