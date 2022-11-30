@@ -28,7 +28,6 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
         logging: true,
         logger: 'file',
     }
-
 }
 
 export default registerAs('database', () => ({
