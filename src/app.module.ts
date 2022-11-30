@@ -30,7 +30,6 @@ import { PasswordResetModule } from './modules/passwordReset/passwordReset.modul
       useFactory: (config: ConfigService) =>
         config.get<TypeOrmModuleOptions>(TYPEORM_CONFIG),
     }),
-    //  TODO: Create config module
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig],

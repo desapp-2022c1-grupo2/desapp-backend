@@ -1,7 +1,6 @@
 import {Message} from "../entities";
 
-//TODO: CHANGE RECEIVER EMAIL
-export const passwordResetMessage = (receiverEmail: string, resetPasswordUrl: string) => new Message('tomas.toloza@estudiantes.unahur.edu.ar', 'tomas.toloza@estudiantes.unahur.edu.ar',
+export const passwordResetMessage = (receiverEmail: string, resetPasswordUrl: string) => new Message(receiverEmail, 'tomas.toloza@estudiantes.unahur.edu.ar',
     'Reestablecimiento de contraseña | Diseño industrial UNAHUR',
     `Hola! Un administrador ha reestablecido tu contraseña`,
     `<div>

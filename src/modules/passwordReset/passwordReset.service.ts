@@ -1,13 +1,11 @@
 import {HttpStatus, Injectable} from '@nestjs/common';
-import {JtpService} from "../jtp";
 import {MailService, passwordResetMessage} from "../mail";
 import {InjectRepository} from "@nestjs/typeorm";
 import {DeleteResult, Repository} from "typeorm";
-import {AdminService} from "../admin";
 import {PasswordReset} from "./entities";
 import {createHash} from "crypto";
 import {NotFoundException} from "@nestjs/common/exceptions/not-found.exception";
-import {generateHash} from "../../helpers/crypto";
+import {ConfigService} from "@nestjs/config";
 
 @Injectable()
 export class PasswordResetService {
@@ -16,6 +14,7 @@ export class PasswordResetService {
         @InjectRepository(PasswordReset)
         private readonly passwordResetRepository: Repository<PasswordReset>,
         private readonly mailService: MailService,
+        private configService: ConfigService,
     ) {
 
     }
@@ -78,8 +77,7 @@ export class PasswordResetService {
         passwordResetLog = `PasswordReset (id: ${passwordReset.id}, entityRole: ${passwordReset.entityRole}, entityId: ${passwordReset.entityId}, createdAt: ${passwordReset.createdAt})`;
         console.log(`Saved new reset with data = ${passwordResetLog}`)
 
-        // TODO: REPLACE WITH ENV VARIABLE
-        let backendUrl = `http://localhost:3002`;
-        return `${backendUrl}/${role.toLowerCase()}/validateReset/${hashId}`;
+        const frontEndURL = this.configService.get<string>("FRONTEND_URL");
+        return `${frontEndURL}/${role.toLowerCase()}/validateReset/${hashId}`;
     }
 }
