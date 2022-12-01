@@ -70,9 +70,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-env.development
-env.development
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
@@ -113,4 +110,7 @@ temp/
 
 .DS_Store
 
+# dotenv environment variables file
+.env.development
 .env
+.env.*

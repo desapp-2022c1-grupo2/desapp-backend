@@ -33,7 +33,7 @@ import { PasswordResetModule } from './modules/passwordReset/passwordReset.modul
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig],
-      envFilePath: process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : `.env`, // default apunta a .env.development.development
+      envFilePath: [`.env`, `.env.development`, `.env.${process.env.NODE_ENV}`],
       validationSchema: Joi.object({
         NODE_ENV: Joi.string()
           .valid('development', 'production', 'testing')
