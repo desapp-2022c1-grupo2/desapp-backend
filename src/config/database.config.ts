@@ -26,7 +26,7 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
      */
         synchronize: false,
         logging: true,
-        logger: 'file',
+        logger: 'advanced-console',
     }
 }
 
