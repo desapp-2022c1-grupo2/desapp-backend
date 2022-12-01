@@ -7,6 +7,7 @@ import {FindOneOptions} from 'typeorm/find-options/FindOneOptions';
 import {generateHash} from '../../helpers/crypto';
 import {PasswordResetService} from "../passwordReset/passwordReset.service";
 import {PasswordReset} from "../passwordReset/entities";
+import {CreatedAdminDto} from "./dto";
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
@@ -54,7 +55,7 @@ export class AdminService extends BaseService<Admin> {
     return updateResult;
   }
   async update(id: number, entity: CreatedAdminDto): Promise<Admin> {
-    entity.password = await generateHashPassword(entity.password);
+    entity.password = await generateHash(entity.password);
     const data = await this.findOne(id);
     const updatedData = Object.assign(data, entity);
     return await this.getRepository().save(updatedData);
