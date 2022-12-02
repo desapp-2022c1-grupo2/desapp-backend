@@ -2,7 +2,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - "deployV1.0"
+      - "development"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,7 +42,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
 
       - name: Build and push
         #https://github.com/docker/build-push-action/tree/master
