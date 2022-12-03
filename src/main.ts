@@ -7,7 +7,11 @@ import { SERVER_PORT } from './config';
 import * as fs from "fs";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const httpsOptions = {
+    key: fs.readFileSync('./disenio-industrial.pem'),
+    // cert: fs.readFileSync('./secrets/public-certificate.pem'),
+  };
+  const app = await NestFactory.create(AppModule, { cors: true , httpsOptions});
   const config = app.get(ConfigService);
   const logger = new Logger('Bootstrap');
   const port = parseInt(config.get<string>(SERVER_PORT), 10) || 3000;
