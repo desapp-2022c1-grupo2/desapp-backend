@@ -114,3 +114,7 @@ temp/
 .env.development
 .env
 .env.*
+
+#cert
+
+*.pem

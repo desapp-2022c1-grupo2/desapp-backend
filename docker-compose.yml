@@ -5,11 +5,15 @@ services:
     restart: always
     container_name: diseno-industrial
     environment:
-      DATABASE_HOST : ${DATABASE_HOST}
-      DATABASE_NAME : ${DATABASE_NAME}
-      DATABASE_USER : ${DATABASE_USER}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_HOST : database-disenio.cpgkmx9hwrak.us-east-1.rds.amazonaws.com
+      DATABASE_NAME : db_disenio
+      DATABASE_USER : admin
+      DATABASE_PASSWORD: unahur2022
+      DATABASE_PORT: 3306
+      PORT: 3005
+      JWT_SECRET: unahur@secretKey
+      SENDGRID_API_KEY: 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
+      FRONTEND_URL:http: http://localhost:3002
 
     ports:
       - "3005:3005"

@@ -21,7 +21,7 @@ export abstract class BaseService<T extends BaseEntity> {
   }
 
   async delete(id: any) {
-    return this.getRepository().delete(id);
+    return await this.getRepository().delete(id);
   }
 
   async update(id: any, dto: any): Promise<T> {
@@ -30,7 +30,7 @@ export abstract class BaseService<T extends BaseEntity> {
     return await this.getRepository().save(updatedData);
   }
 
-  count(options?: FindManyOptions<T>): Promise<number> {
-    return this.getRepository().count(options);
+  async count(options?: FindManyOptions<T>): Promise<number> {
+    return await this.getRepository().count(options);
   }
 }
