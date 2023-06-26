@@ -1,0 +1,65 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - "deploy"
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            # Checkout the repository
+          - name: Checkout
+            uses: actions/checkout@v3
+
+          #Accede a la metadata del repositorio
+          - name: Repo metadata
+            # https://github.com/actions/github-script
+            id: repo
+            uses: actions/github-script@v3
+            with:
+              script: |
+                const repo = await github.repos.get(context.repo)
+                return repo.data
+
+            # Inicio de QEMU para emular procesos basados en traducción dinámica de binarios
+          - name: Set up QEMU
+            #https://github.com/doclerLabs/qemu-action
+            id: set_up_qemu
+            uses: docker/setup-qemu-action@v2
+            with:
+              platforms: all
+
+          - name: Set up Docker Buildx
+            # https://github.com/docker/setup-buildx-action
+            id: buildx
+            uses: docker/setup-buildx-action@v2
+
+
+            # Conexion docker hub
+          - name: Login docker hub
+            # https//github.com/docker/login-action
+            id: login_dockerhub
+            uses: docker/login-action@v2
+            with:
+              username: ${{ secrets.DOCKERHUB_USERNAME }}
+              password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+
+          - name: Build and push
+            #https://github.com/docker/build-push-action/tree/master
+            id: docker_build
+            uses: docker/build-push-action@v3
+            with:
+             context: .
+             platforms: linux/amd64
+             push: true
+             tags: adrianyaniri/disenio-industrial:latest
+
+          - name: Sync Readme Github - Dockerhub
+            # https://github.com/marketplace/actions/dockerhub-readme
+            uses: ms-jpq/sync-dockerhub-readme@v1
+            with:
+              username: ${{ secrets.DOCKERHUB_USERNAME }}
+              password: ${{ secrets.DOCKERHUB_PASS }}
+              repository: adrianyaniri/disenio-industrial
+              readme: "./README.md"

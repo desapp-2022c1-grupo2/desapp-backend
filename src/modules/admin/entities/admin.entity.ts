@@ -9,7 +9,7 @@ export class Admin extends BaseEntity {
   @Column({ type: 'varchar', length: 255, name: 'name' })
   name: string;
 
-  @Column({type: 'varchar', length: 255, name: 'lastName' })
+  @Column({ type: 'varchar', length: 255, name: 'lastname' })
   lastName: string;
 
   @Column({ type: 'varchar', length: 255 })
@@ -17,5 +17,4 @@ export class Admin extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
-
 }
