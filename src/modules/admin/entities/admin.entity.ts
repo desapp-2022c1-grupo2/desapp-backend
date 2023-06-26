@@ -6,15 +6,15 @@ export class Admin extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255, name: 'name' })
   name: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255, name: 'lastname' })
   lastName: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   password: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
 }

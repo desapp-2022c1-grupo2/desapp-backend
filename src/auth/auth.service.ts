@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AdminService, Jtp, JtpService } from '../modules';
-import { compareHashPassword } from '../helpers/crypto';
+import { compareHash } from '../helpers/crypto';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +27,7 @@ export class AuthService {
 
     // else Admin
     const admin = await this.adminService.findOneByEmail(username);
-    if (admin && (await compareHashPassword(pass, admin.password))) {
+    if (admin && (await compareHash(pass, admin.password))) {
       const { password, ...result } = admin;
       // Workaround to RBAC since we can't modify the database
       const role = 'Admin';

@@ -62,10 +62,10 @@ export class Assignment extends BaseEntity {
   @Column({ name: 'variable_5' })
   var5: string;
 
-  @Column({ name: 'tipo', type: 'tinyint' })
+  @Column({ name: 'tipo', type: 'smallint' })
   type: number;
 
-  @Column({ name: 'estado', type: 'tinyint' })
+  @Column({ name: 'estado', type: 'smallint' })
   status: number;
 
   @ManyToOne(() => Course, (course) => course, {
@@ -74,6 +74,6 @@ export class Assignment extends BaseEntity {
   @JoinColumn({ name: 'materia_id' })
   public course: Course;
 
-  @Column({ name: 'proceso_individual', type: 'tinyint' })
+  @Column({ name: 'proceso_individual', type: 'smallint' })
   individualProcess: number;
 }

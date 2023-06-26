@@ -4,12 +4,8 @@ import { join } from 'path';
 
 function typeormModuleOptions(): TypeOrmModuleOptions {
   return {
-    type: 'mariadb',
-    host:process.env.DATABASE_HOST,
-    port: parseInt(process.env.DATABASE_PORT, 10),
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
+    type: 'postgres',
+    url: process.env.DATABASE_URL,
     entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
     autoLoadEntities: true,
 
@@ -20,14 +16,13 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
     migrationsTableName: 'migrations_typeorm',
 
-
-        /**
-         * Activar solo en desarrollo
-         */
-        synchronize: false,
-        logging: true,
-        logger: 'file',
-    }
+    /**
+     * Activar solo en desarrollo
+     */
+    synchronize: false,
+    logging: true,
+    logger: 'advanced-console',
+  };
 }
 
 export default registerAs('database', () => ({
