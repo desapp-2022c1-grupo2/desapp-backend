@@ -46,7 +46,7 @@ export class Student extends BaseEntity {
   @Column()
   comision: number;
 
-  @Column({ type: 'tinyint' })
+  @Column({ type: 'smallint' })
   rondina: number;
 
   @Column({ name: 'sobre_mi', type: 'text' })
@@ -58,6 +58,6 @@ export class Student extends BaseEntity {
   @Column({ type: 'varchar', length: 245 })
   materia2: string;
 
-  @Column({ type: 'tinyint' })
+  @Column({ type: 'smallint' })
   habilitado: number;
 }

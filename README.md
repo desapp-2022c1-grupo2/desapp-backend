@@ -29,7 +29,7 @@ Esta REST API necesita autorización para los cada uno de los módulos, exceptua
 Para poder utilizarla,
 
 - La aplicación necesita un Bearer token como header
-- Se obtiene enviando un POST a `/api/auth/login` enviando como body lo siguiente:
+- Se obtiene enviando un GET a `/api/auth/login` enviando como body lo siguiente:
 
 ```json
 {
