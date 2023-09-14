@@ -4,12 +4,12 @@ import { join } from 'path';
 
 function typeormModuleOptions(): TypeOrmModuleOptions {
   return {
-    type: 'postgres',
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    port: Number(process.env.DATABASE_PORT),    
+    type: 'mariadb',
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT),    
     entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
     autoLoadEntities: true,
 
